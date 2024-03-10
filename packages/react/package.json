@@ -1,0 +1,24 @@
+{
+  "name": "@i18n/react",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@i18n/t": "workspace:*"
+  },
+  "devDependencies": {
+    "@i18n/eslint-config": "workspace:*",
+    "@i18n/typescript-config": "workspace:*",
+    "@turbo/gen": "^1.12.4",
+    "@types/node": "^20.11.24",
+    "@types/eslint": "^8.56.5",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "eslint": "^8.57.0",
+    "react": "^18.2.0",
+    "typescript": "^5.3.3"
+  }
+}
