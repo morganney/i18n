@@ -43,4 +43,4 @@ export type Gender = "m" | "f" | "n";
  * - 'many' : Depending on the language; where there's a fairly large amount.
  * - 'other' (default) : Any other specification goes here. This is the default langauge key; where we may find fractions, negative or otherwise unspecified or very large numbers. For any translation, this should always be specified at all times. This is also the fallback translation in case other language keys or not defined.
  */
-export type Plural = "zero" | "one" | "two" | "few" | "many" | "other";
+export type Plurality = "zero" | "one" | "two" | "few" | "many" | "other";

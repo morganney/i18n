@@ -1,17 +1,30 @@
 import { format } from "./format";
-import type { ExtractPlaceholders, Gender, MaybeParam, Plural } from "./types";
+import type {
+  ExtractPlaceholders,
+  Gender,
+  MaybeParam,
+  Plurality,
+} from "./types";
 
 export type TranslateValueOptions = {
   gender?: Gender;
-  plurality?: number;
+  plurality?: Plurality;
 };
 
 export type TranslateMessage<Message extends string> = <S extends Message>(
   text: S,
-  ...[values]: MaybeParam<{ [K in ExtractPlaceholders<S>]: unknown } & TranslateValueOptions>
+  ...[values]: MaybeParam<
+    { [K in ExtractPlaceholders<S>]: unknown } & TranslateValueOptions
+  >
 ) => string;
 
-export type PluralMessage = Record<Plural, GenderedMessage | string>;
+// Define a type for all plural forms except "other", and make it optional
+type OptionalPluralMessage = Partial<Record<Exclude<Plurality, "other">, GenderedMessage | string>>;
+
+// Define a type for "other", and make it required
+type RequiredPluralMessage = Required<Record<"other", GenderedMessage | string>>;
+
+export type PluralMessage = OptionalPluralMessage & RequiredPluralMessage;
 
 export type GenderedMessage = Record<Gender, string>;
 
@@ -19,33 +32,22 @@ export type Messages = {
   [key: string]: PluralMessage | GenderedMessage | string;
 };
 
-export type PluralHandler = (plurality: number) => Plural;
-
 export type Translate = <M extends Messages, K = keyof M>(
-  messages: M,
-  plurals: PluralHandler
+  messages: M
 ) => TranslateMessage<K extends string ? K : never>;
 
 export const translate: Translate =
-  (messages, plurals) =>
+  (messages) =>
   (text, ...[values]) => {
     let translated: unknown = messages[text] ?? text;
 
     if (translated && typeof translated !== "string" && values) {
-      if (values.plurality !== undefined) {
-        const plural = plurals(values.plurality);
+      translated =
+        (translated as PluralMessage)?.[values?.plurality ?? "other"] ??
+        translated;
 
-        translated = (translated as PluralMessage)?.[plural] ?? translated;
-      } else {
-        translated = (translated as PluralMessage)?.other ?? translated;
-      }
-
-      if (values.gender) {
-        translated =
-          (translated as GenderedMessage)?.[values.gender] ?? translated;
-      } else {
-        translated = (translated as GenderedMessage)?.n ?? translated;
-      }
+      translated =
+        (translated as GenderedMessage)?.[values?.gender ?? "n"] ?? translated;
     }
 
     return format(translated as string, values);
