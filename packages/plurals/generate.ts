@@ -25,6 +25,7 @@ type PluralFuncVars = Record<(typeof PARAMS)[number], string> & {
 
 type PluralFunctionExpr = string;
 type RuleFunctionDef = {
+  hasInput: boolean;
   name: string;
   fn: PluralFunctionExpr;
 };
@@ -73,37 +74,42 @@ scanPluralData(ordinalData.supplemental["plurals-type-ordinal"], "ordinal");
 // Write all rules
 fs.mkdirSync("./src/rules", { recursive: true });
 
-const ruleFiles = Object.values(ruleFnDefs).map(rule => createRuleFileContent(rule));
+const ruleFiles = Object.values(ruleFnDefs).map((rule) =>
+  createRuleFileContent(rule)
+);
 
-// Write all plurals
-fs.mkdirSync('./src/plurals', { recursive: true });
+// Write all plural rules in locale
+fs.mkdirSync("./src/locale", { recursive: true });
 
-const pluralFiles = Object.entries(pluralFnDefs).map(([locale, plural]) => createPluralFileContent(locale, plural));
+const pluralFiles = Object.entries(pluralFnDefs).map(([locale, plural]) =>
+  createPluralFileContent(locale, plural)
+);
 
-Promise.all([
-  ...ruleFiles,
-  ...pluralFiles
-]).then(() => {
-  console.log(`Generated ${ruleFiles.length} rules`);
-  console.log(`Generated ${pluralFiles.length} plurals`);
-  console.log('Done!');
-}, err => {
-  console.error('ERR:', err);
-});
+const indexFile = createIndexFileContent();
 
-
+Promise.all([...ruleFiles, ...pluralFiles, indexFile]).then(
+  () => {
+    console.log(`Generated ${ruleFiles.length} rules`);
+    console.log(`Generated ${pluralFiles.length} plurals`);
+    console.log("Done!");
+  },
+  (err) => {
+    console.error("ERR:", err);
+  }
+);
 
 // --------------------------------------------------------------------
 
 async function createRuleFileContent(rule: RuleFunctionDef) {
+  // TODO: remove (p:number) if function has no params
   const content = await prettier.format(
     [
       "/**",
       " * Rule auto-generated from cldr-data",
       " */",
-      "import type { Plurality } from '../types';",
+      "import type { Plurality } from '@i18n/base';",
       "",
-      `export default (p:number):Plurality => { ${rule.fn} };`,
+      `export default (${rule.hasInput ? "p:number" : ""}):Plurality => { ${rule.fn} };`,
     ].join("\n"),
     {
       parser: "typescript",
@@ -113,32 +119,59 @@ async function createRuleFileContent(rule: RuleFunctionDef) {
   fs.writeFileSync(`./src/rules/${rule.name}.ts`, content);
 }
 
-async function createPluralFileContent(locale: Locale, plural: Partial<PluralFunctionRuleName>) {
-  const content = await prettier.format([
-    "/**",
-    ` * Locale: ${locale}`,
-    " * Plural auto-generated from cldr-data",
-    " */",
-    plural.cardinal ? `import cardinal from '../rules/${plural.cardinal}';` : null,
-    plural.ordinal ? `import ordinal from '../rules/${plural.ordinal}';` : null,
-    "import type { PluralRules } from '../types';",
-    "",
-    "export default {",
-    `  ordinal${plural.ordinal ? '' : `: ${defaultPluralFn}`},`,
-    `  cardinal${plural.cardinal ? '' : `: ${defaultPluralFn}`}`,
-    "} satisfies PluralRules;"
-  ].filter(line => line !== null).join("\n"),
-  {
-    parser: 'typescript'
-  });
+async function createPluralFileContent(
+  locale: Locale,
+  plural: Partial<PluralFunctionRuleName>
+) {
+  const content = await prettier.format(
+    [
+      "/**",
+      ` * Locale: ${locale}`,
+      " * Plural auto-generated from cldr-data",
+      " */",
+      plural.cardinal
+        ? `import cardinal from '../rules/${plural.cardinal}';`
+        : null,
+      plural.ordinal
+        ? `import ordinal from '../rules/${plural.ordinal}';`
+        : null,
+      "import type { PluralRule } from '../types';",
+      "",
+      "const pluralRule: PluralRule = {",
+      `  ordinal${plural.ordinal ? "" : `: ${defaultPluralFn}`},`,
+      `  cardinal${plural.cardinal ? "" : `: ${defaultPluralFn}`}`,
+      "};",
+      "",
+      "export default pluralRule;",
+    ]
+      .filter((line) => line !== null)
+      .join("\n"),
+    {
+      parser: "typescript",
+    }
+  );
 
-  fs.writeFileSync(`./src/plurals/${locale}.ts`, content);
+  await fs.writeFileSync(`./src/locale/${locale}.ts`, content);
+}
+
+async function createIndexFileContent() {
+  const content = await prettier.format(
+    Object.keys(pluralFnDefs)
+      .map((locale) => `export { default as ${locale.replaceAll('-', '')}} from './${locale}';`)
+      .join("\n"),
+    {
+      parser: "typescript",
+    }
+  );
+
+  fs.writeFileSync("./src/locale/index.ts", content);
 }
 
 function scanPluralData(pluralData: PluralsTypeData, type: PluralsType) {
   Object.entries(pluralData).forEach(([locale, rawRules]) => {
     const ruleVars: Partial<PluralFuncVars> = {};
     const rules: Partial<Record<Plurality, string>> = {};
+    let ruleHasInput = false;
 
     Object.entries(rawRules).forEach(([key, rawExpr]) => {
       const plurality = key.substring(key.lastIndexOf("-") + 1) as Plurality;
@@ -148,10 +181,10 @@ function scanPluralData(pluralData: PluralsTypeData, type: PluralsType) {
         exprCache[expr] = parseRule(expr); // prevent recomputing this...
       }
 
-      const { vars, parsed } = exprCache[expr]!;
+      const { hasInput, vars, parsed } = exprCache[expr]!;
 
       rules[plurality] = parsed;
-
+      ruleHasInput = ruleHasInput || hasInput;
       Object.assign(ruleVars, vars);
     });
 
@@ -179,9 +212,10 @@ function scanPluralData(pluralData: PluralsTypeData, type: PluralsType) {
 
     if (!ruleFnDefs[fnExpr]) {
       const name = `rule${Object.keys(ruleFnDefs).length + 1}`;
-      const fn = `${fnParams ? `let ${fnParams}; ` : ''}return ${fnExpr};`;
+      const fn = `${fnParams ? `let ${fnParams}; ` : ""}return ${fnExpr};`;
 
-      ruleFnDefs[fnExpr] = { name, fn };
+      // TODO: add whether we require function (p:number) arg
+      ruleFnDefs[fnExpr] = { hasInput: ruleHasInput, name, fn };
     }
 
     if (!pluralFnDefs[locale]) {
@@ -193,17 +227,18 @@ function scanPluralData(pluralData: PluralsTypeData, type: PluralsType) {
 }
 
 function parseRule(expr: string) {
+  let requireP: boolean = false;
   let requireN: boolean = false;
   const vars: Partial<PluralFuncVars> = {};
 
   const parsed = expr
     .replace("i", () => {
       requireN = true;
-
       vars.i = "Math.floor(n)||0";
       return "i";
     })
     .replace("v", () => {
+      requireP = true;
       vars.v = '((p+"").split(".")[1]||"").length';
       return "v";
     })
@@ -215,6 +250,7 @@ function parseRule(expr: string) {
     })
     */
     .replace("f", () => {
+      requireP = true;
       vars.f = 'Math.floor(Number((p+"").split(".")[1]))||0';
       return "f";
     })
@@ -273,8 +309,9 @@ function parseRule(expr: string) {
     .replace(OP_NOT_EQUAL, " !== ");
 
   if (requireN || expr.indexOf("n") >= 0) {
+    requireP = true;
     vars.n = "Math.abs(p)||0";
   }
 
-  return { vars, parsed };
+  return { hasInput: requireP, vars, parsed };
 }

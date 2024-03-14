@@ -1,9 +1,5 @@
-import type { ExtractPlaceholders, MaybeParam } from "./types";
+import type { FormatText } from "./types";
 
-export type FormatText = <S extends string>(
-  text: S,
-  ...[values]: MaybeParam<{ [K in ExtractPlaceholders<S>]: unknown }>
-) => string;
 
 /**
  * The pattern matching placholders. E.g., "Hello {name}"

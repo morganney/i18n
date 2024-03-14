@@ -1,3 +1,6 @@
+import type { Gender, Plurality } from '@i18n/base';
+
+
 export type ExtractPlaceholders<T extends string> = string extends T
   ? never
   : T extends `${infer _Pre}{${infer Name}}${infer Rest}`
@@ -26,21 +29,43 @@ export type MaybeParam<O extends Record<string, unknown>> = [
 
 export type Expand<T> = T extends infer O ? { [K in keyof O]: O[K] } : never;
 
-/**
- * Gender
- * - 'm' : masculine
- * - 'f' : feminine
- * - 'n' : (default) gender neutral
- */
-export type Gender = "m" | "f" | "n";
+
+export type TranslateValueOptions = {
+  gender?: Gender;
+  plurality?: Plurality;
+};
+
+
+// Define a type for all plural forms except "other", and make it optional
+type OptionalPluralMessage = Partial<Record<Exclude<Plurality, "other">, GenderedMessage | string>>;
+
+// Define a type for "other", and make it required
+type RequiredPluralMessage = Required<Record<"other", GenderedMessage | string>>;
+
+export type PluralMessage = OptionalPluralMessage & RequiredPluralMessage;
+
+export type GenderedMessage = Record<Gender, string>;
+
+export type Messages = {
+  [key: string]: PluralMessage | GenderedMessage | string;
+};
 
 /**
- * Plurality
- * - 'zero' : Depending on the language; where there's nothing.
- * - 'one' : Depending on the language; where there's an unicity in number.
- * - 'two' : Depending on the language; where there's a pair.
- * - 'few' : Depending on the language; where there's a small amount.
- * - 'many' : Depending on the language; where there's a fairly large amount.
- * - 'other' (default) : Any other specification goes here. This is the default langauge key; where we may find fractions, negative or otherwise unspecified or very large numbers. For any translation, this should always be specified at all times. This is also the fallback translation in case other language keys or not defined.
+ * 
  */
-export type Plurality = "zero" | "one" | "two" | "few" | "many" | "other";
+export type FormatText<S extends string = string, ValueOptions = {}> = <T extends S>(
+  text: T,
+  ...[values]: MaybeParam<{ [K in ExtractPlaceholders<T>]: unknown }> & ValueOptions
+) => string;
+
+export type TranslateMessage<Message extends string> = FormatText<Message, TranslateValueOptions>;
+// export type TranslateMessage<Message extends string> = <S extends Message>(
+//   text: S,
+//   ...[values]: MaybeParam<
+//     { [K in ExtractPlaceholders<S>]: unknown } & TranslateValueOptions
+//   >
+// ) => string;
+
+export type Translate = <M extends Messages, K = keyof M>(
+  messages: M
+) => TranslateMessage<K extends string ? K : never>;

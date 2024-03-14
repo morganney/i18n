@@ -1,53 +1,32 @@
 import { format } from "./format";
+import {
+  defaultPlurality,
+  defaultGender,
+  type Gender,
+  type Plurality,
+} from "@i18n/base";
 import type {
-  ExtractPlaceholders,
-  Gender,
-  MaybeParam,
-  Plurality,
+  GenderedMessage,
+  PluralMessage,
+  Translate,
+  TranslateValueOptions,
 } from "./types";
 
-export type TranslateValueOptions = {
-  gender?: Gender;
-  plurality?: Plurality;
-};
-
-export type TranslateMessage<Message extends string> = <S extends Message>(
-  text: S,
-  ...[values]: MaybeParam<
-    { [K in ExtractPlaceholders<S>]: unknown } & TranslateValueOptions
-  >
-) => string;
-
-// Define a type for all plural forms except "other", and make it optional
-type OptionalPluralMessage = Partial<Record<Exclude<Plurality, "other">, GenderedMessage | string>>;
-
-// Define a type for "other", and make it required
-type RequiredPluralMessage = Required<Record<"other", GenderedMessage | string>>;
-
-export type PluralMessage = OptionalPluralMessage & RequiredPluralMessage;
-
-export type GenderedMessage = Record<Gender, string>;
-
-export type Messages = {
-  [key: string]: PluralMessage | GenderedMessage | string;
-};
-
-export type Translate = <M extends Messages, K = keyof M>(
-  messages: M
-) => TranslateMessage<K extends string ? K : never>;
+type TranslatedMessage = PluralMessage | GenderedMessage | string;
 
 export const translate: Translate =
   (messages) =>
   (text, ...[values]) => {
-    let translated: unknown = messages[text] ?? text;
+    let translated: TranslatedMessage = messages[text] ?? text;
 
     if (translated && typeof translated !== "string" && values) {
-      translated =
-        (translated as PluralMessage)?.[values?.plurality ?? "other"] ??
-        translated;
+      const plurality: Plurality =
+        (values as TranslateValueOptions)?.plurality ?? defaultPlurality;
+      const gender: Gender =
+        (values as TranslateValueOptions)?.gender ?? defaultGender;
 
-      translated =
-        (translated as GenderedMessage)?.[values?.gender ?? "n"] ?? translated;
+      translated = (translated as PluralMessage)?.[plurality] ?? translated;
+      translated = (translated as GenderedMessage)?.[gender] ?? translated;
     }
 
     return format(translated as string, values);

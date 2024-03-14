@@ -3,11 +3,25 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "build": "pnpm clean && tsc -p tsconfig.build.json && ts-node ../../scripts/bundle.ts",
+    "clean": "rm -rf build coverage",
     "lint": "eslint . --max-warnings 0",
-    "test": "jest"
+    "test": "jest",
+    "reset": "rimraf .next .turbo node_modules"
+  },
+  "main": "./build/index.js",
+  "types": "./build/index.d.js",
+  "exports": {
+    ".": "./build/index.js",
+    "./TranslationProvider": "./build/TranslationProvider.js",
+    "./useTranslation": "./build/useTranslation.js",
+    "./types": "./build/types.js"
   },
   "dependencies": {
-    "@i18n/t": "workspace:*"
+    "@i18n/base": "workspace:*",
+    "@i18n/plurals": "workspace:*",
+    "@i18n/t": "workspace:*",
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "@i18n/eslint-config": "workspace:*",

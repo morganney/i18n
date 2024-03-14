@@ -10,16 +10,22 @@
     "intl",
     "locale"
   ],
+  "main": "./build/index.js",
+  "types": "./build/index.d.js",
   "exports": {
-    ".": "./index.js",
-    "./translate": "./translate.js",
-    "./format": "./format.js"
+    ".": "./build/index.js",
+    "./translate": "./build/translate.js",
+    "./format": "./build/format.js"
   },
   "scripts": {
-    "build": "pnpm clean && tsc -p tsconfig.build.json && cp README.md build/ && cp ../../LICENSE build/ && lean-package > build/package.json",
+    "build": "pnpm clean && tsc -p tsconfig.build.json && ts-node ../../scripts/bundle.ts",
     "clean": "rm -rf build coverage",
     "lint": "eslint . --max-warnings 0",
-    "test": "jest"
+    "test": "jest",
+    "reset": "rimraf .next .turbo node_modules"
+  },
+  "dependencies": {
+    "@i18n/base": "workspace:*"
   },
   "devDependencies": {
     "@i18n/eslint-config": "workspace:*",
@@ -31,7 +37,6 @@
     "@types/jest" : "^29.5.12",
     "eslint": "^8.57.0",
     "jest": "^29.7.0",
-    "lean-package": "1.4.0",
     "ts-jest": "^29.1.2",
     "typescript": "^5.3.3"
   }

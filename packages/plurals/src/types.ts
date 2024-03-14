@@ -1,11 +1,8 @@
-/**
- * Plurality is locale-dependent. Default: 'other'
- */
-export type Plurality = "zero" | "one" | "two" | "few" | "many" | "other";
+import type { Plurality } from '@i18n/base';
 
 export type PluralFn = (p: number) => Plurality;
 
-export type PluralRules = {
+export type PluralRule = {
   ordinal: PluralFn;
   cardinal: PluralFn;
 };
