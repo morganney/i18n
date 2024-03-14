@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import Context from './context';
-import { Messages } from "@i18n/t";
+import { Messages } from "@foo-i18n/t";
 import { TranslationContext } from "./types";
 
 const useTranslation = <M extends Messages>() => {

@@ -8,10 +8,10 @@ importers:
 
   .:
     devDependencies:
-      '@i18n/eslint-config':
+      '@foo-i18n/eslint-config':
         specifier: workspace:*
         version: link:packages/eslint-config
-      '@i18n/typescript-config':
+      '@foo-i18n/typescript-config':
         specifier: workspace:*
         version: link:packages/typescript-config
       '@types/node':
@@ -39,10 +39,10 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2
     devDependencies:
-      '@i18n/eslint-config':
+      '@foo-i18n/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@i18n/typescript-config':
+      '@foo-i18n/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@jest/types':
@@ -102,14 +102,14 @@ importers:
 
   packages/plurals:
     dependencies:
-      '@i18n/base':
+      '@foo-i18n/base':
         specifier: workspace:*
         version: link:../base
     devDependencies:
-      '@i18n/eslint-config':
+      '@foo-i18n/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@i18n/typescript-config':
+      '@foo-i18n/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@jest/types':
@@ -148,23 +148,23 @@ importers:
 
   packages/react:
     dependencies:
-      '@i18n/base':
+      '@foo-i18n/base':
         specifier: workspace:*
         version: link:../base
-      '@i18n/plurals':
+      '@foo-i18n/plurals':
         specifier: workspace:*
         version: link:../plurals
-      '@i18n/t':
+      '@foo-i18n/t':
         specifier: workspace:*
         version: link:../t
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@i18n/eslint-config':
+      '@foo-i18n/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@i18n/typescript-config':
+      '@foo-i18n/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@turbo/gen':
@@ -191,14 +191,14 @@ importers:
 
   packages/t:
     dependencies:
-      '@i18n/base':
+      '@foo-i18n/base':
         specifier: workspace:*
         version: link:../base
     devDependencies:
-      '@i18n/eslint-config':
+      '@foo-i18n/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@i18n/typescript-config':
+      '@foo-i18n/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@jest/types':

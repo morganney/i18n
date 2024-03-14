@@ -1,5 +1,5 @@
 {
-  "name": "@i18n/t",
+  "name": "@foo-i18n/t",
   "version": "1.0.0",
   "description": "Translator module",
   "author": "Yanick Rochon <yanick.rochon@gmail.com>",
@@ -15,7 +15,8 @@
   "exports": {
     ".": "./build/index.js",
     "./translate": "./build/translate.js",
-    "./format": "./build/format.js"
+    "./format": "./build/format.js",
+    "./types": "./build/types.js"
   },
   "scripts": {
     "build": "pnpm clean && tsc -p tsconfig.build.json && ts-node ../../scripts/bundle.ts",
@@ -25,11 +26,11 @@
     "reset": "rimraf .next .turbo node_modules"
   },
   "dependencies": {
-    "@i18n/base": "workspace:*"
+    "@foo-i18n/base": "workspace:*"
   },
   "devDependencies": {
-    "@i18n/eslint-config": "workspace:*",
-    "@i18n/typescript-config": "workspace:*",
+    "@foo-i18n/eslint-config": "workspace:*",
+    "@foo-i18n/typescript-config": "workspace:*",
     "@jest/types": "29.6.3",
     "@turbo/gen": "^1.12.4",
     "@types/node": "^20.11.24",

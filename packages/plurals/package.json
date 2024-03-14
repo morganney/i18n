@@ -1,5 +1,5 @@
 {
-  "name": "@i18n/plurals",
+  "name": "@foo-i18n/plurals",
   "version": "1.0.0",
   "description": "Plural rules for message translation.",
   "author": "Yanick Rochon <yanick.rochon@gmail.com>",
@@ -26,11 +26,11 @@
     "reset": "rimraf .next .turbo node_modules"
   },
   "dependencies": {
-    "@i18n/base": "workspace:*"
+    "@foo-i18n/base": "workspace:*"
   },
   "devDependencies": {
-    "@i18n/eslint-config": "workspace:*",
-    "@i18n/typescript-config": "workspace:*",
+    "@foo-i18n/eslint-config": "workspace:*",
+    "@foo-i18n/typescript-config": "workspace:*",
     "@jest/types": "29.6.3",
     "@turbo/gen": "^1.12.4",
     "@types/eslint": "^8.56.5",

@@ -1,7 +1,7 @@
 /**
 This script is used to build src/*.ts and src/rules/*.ts
 
-This script is part of the npm package "@i18n/plurals" and
+This script is part of the npm package "@foo-i18n/plurals" and
 should not be distributed in a non-development environment
 as it depends on cldr-data to be installed as a dev-dependency.
 */
@@ -107,7 +107,7 @@ async function createRuleFileContent(rule: RuleFunctionDef) {
       "/**",
       " * Rule auto-generated from cldr-data",
       " */",
-      "import type { Plurality } from '@i18n/base';",
+      "import type { Plurality } from '@foo-i18n/base';",
       "",
       `export default (${rule.hasInput ? "p:number" : ""}):Plurality => { ${rule.fn} };`,
     ].join("\n"),

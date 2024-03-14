@@ -4,7 +4,7 @@ import {
   defaultGender,
   type Gender,
   type Plurality,
-} from "@i18n/base";
+} from "@foo-i18n/base";
 import type {
   GenderedMessage,
   PluralMessage,

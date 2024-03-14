@@ -1,4 +1,4 @@
-import type { Plurality } from '@i18n/base';
+import type { Plurality } from '@foo-i18n/base';
 
 export type PluralFn = (p: number) => Plurality;
 

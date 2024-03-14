@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import Context from './context';
-import type { LanguageCode } from "@i18n/base";
-import { translate, type Messages } from "@i18n/t";
+import type { LanguageCode } from "@foo-i18n/base";
+import { translate, type Messages } from "@foo-i18n/t";
 import type { TranslationContext } from './types';
-import type { PluralRule } from '@i18n/plurals/types';
+import type { PluralRule } from '@foo-i18n/plurals/types';
 
 
 export type TranslationProviderProps<M extends Messages> = {

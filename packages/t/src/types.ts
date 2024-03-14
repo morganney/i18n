@@ -1,4 +1,4 @@
-import type { Gender, Plurality } from '@i18n/base';
+import type { Gender, Plurality } from '@foo-i18n/base';
 
 
 export type ExtractPlaceholders<T extends string> = string extends T

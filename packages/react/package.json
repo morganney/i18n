@@ -1,5 +1,5 @@
 {
-  "name": "@i18n/react",
+  "name": "@foo-i18n/react",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -18,14 +18,14 @@
     "./types": "./build/types.js"
   },
   "dependencies": {
-    "@i18n/base": "workspace:*",
-    "@i18n/plurals": "workspace:*",
-    "@i18n/t": "workspace:*",
+    "@foo-i18n/base": "workspace:*",
+    "@foo-i18n/plurals": "workspace:*",
+    "@foo-i18n/t": "workspace:*",
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@i18n/eslint-config": "workspace:*",
-    "@i18n/typescript-config": "workspace:*",
+    "@foo-i18n/eslint-config": "workspace:*",
+    "@foo-i18n/typescript-config": "workspace:*",
     "@turbo/gen": "^1.12.4",
     "@types/node": "^20.11.24",
     "@types/eslint": "^8.56.5",

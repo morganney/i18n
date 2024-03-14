@@ -1,5 +1,5 @@
 {
-  "name": "i18n",
+  "name": "foo-i18n",
   "private": true,
   "scripts": {
     "build": "turbo build",
@@ -10,8 +10,8 @@
     "reset": "turbo reset && rimraf pnpm-lock.yaml node_modules && pnpm i"
   },
   "devDependencies": {
-    "@i18n/eslint-config": "workspace:*",
-    "@i18n/typescript-config": "workspace:*",
+    "@foo-i18n/eslint-config": "workspace:*",
+    "@foo-i18n/typescript-config": "workspace:*",
     "@types/node": "^20.11.24",
     "prettier": "^3.2.5",
     "rimraf": "5.0.5",
