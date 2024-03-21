@@ -4,6 +4,8 @@ import SidebarLink from "./sidebar/Link.astro";
 
 import type { MDXDocumentInstance } from "../types/docs";
 
+const basePath = import.meta.env.BASE_URL;
+
 const documents = (await Astro.glob(
   "../pages/docs/**/*.mdx"
 )) as MDXDocumentInstance[];
@@ -15,6 +17,7 @@ const docsByPath = documents.reduce((map, doc) => {
 
   return map;
 }, new Map<string, MDXDocumentInstance>());
+
 ---
 
 <ul>
@@ -22,7 +25,7 @@ const docsByPath = documents.reduce((map, doc) => {
     <SidebarCategory>Getting Started</SidebarCategory>
     <ul>
       <li>
-        <SidebarLink doc={docsByPath.get("/docs/about")} />
+        <SidebarLink doc={docsByPath.get(`${basePath}/docs/about`)} />
       </li>
     </ul>
   </li>
@@ -30,12 +33,12 @@ const docsByPath = documents.reduce((map, doc) => {
     <SidebarCategory>React Usage</SidebarCategory>
     <ul>
       <li>
-        <SidebarLink doc={docsByPath.get("/docs/react/installation")}>
+        <SidebarLink doc={docsByPath.get(`${basePath}/docs/react/installation`)}>
           Installation
         </SidebarLink>
       </li>
       <li>
-        <SidebarLink doc={docsByPath.get("/docs/react/usage")}
+        <SidebarLink doc={docsByPath.get(`${basePath}/docs/react/usage`)}
           >Usage</SidebarLink>
       </li>
     </ul>
@@ -44,15 +47,15 @@ const docsByPath = documents.reduce((map, doc) => {
     <SidebarCategory>API</SidebarCategory>
     <ul>
       <li>
-        <SidebarLink doc={docsByPath.get("/docs/api/translator")}
+        <SidebarLink doc={docsByPath.get(`${basePath}/docs/api/translator`)}
           >Translator</SidebarLink>
       </li>
       <li>
-        <SidebarLink doc={docsByPath.get("/docs/api/plurals")}
+        <SidebarLink doc={docsByPath.get(`${basePath}/docs/api/plurals`)}
           >Plurals</SidebarLink>
       </li>
       <li>
-        <SidebarLink doc={docsByPath.get("/docs/api/react")}>React</SidebarLink>
+        <SidebarLink doc={docsByPath.get(`${basePath}/docs/api/react`)}>React</SidebarLink>
       </li>
     </ul>
   </li>
