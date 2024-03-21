@@ -1,12 +1,14 @@
+"use client";
+
 import { useMemo } from 'react';
 import Context from './context';
 import type { LanguageCode } from "@foo-i18n/base";
-import { translate, type Messages } from "@foo-i18n/t";
+import { translate, type NamespaceMessages } from "@foo-i18n/t";
 import type { TranslationContext } from './types';
 import type { PluralRule } from '@foo-i18n/plurals/types';
 
 
-export type TranslationProviderProps<M extends Messages> = {
+export type TranslationProviderProps<M extends NamespaceMessages> = {
   locale: LanguageCode;
   messages: M;
   plural: PluralRule
@@ -14,18 +16,18 @@ export type TranslationProviderProps<M extends Messages> = {
 }
 
 
-const TranslationProvider = <M extends Messages>({
+const TranslationProvider = <M extends NamespaceMessages>({
   locale,
   messages,
   plural,
   children
 }: TranslationProviderProps<M>) => {
-  const t = useMemo(() => translate(messages), [messages]);
+  const ns = useMemo(() => translate(messages), [messages]);
   const contextValue = useMemo<TranslationContext<M>>(() => ({
     get locale() { return locale; },
     get plural() { return plural; },    
-    get t() { return t; },
-  }), [t, locale, plural]);
+    get ns() { return ns; },
+  }), [ns, locale, plural]);
 
   return (
     <Context.Provider value={contextValue}>

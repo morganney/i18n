@@ -14,16 +14,16 @@
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "exports": {
-    "./*": "./build/locale/*",
+    ".": "./build/index.js",
     "./types": "./build/types.js"
   },
   "scripts": {
     "build": "pnpm clean && pnpm generate && tsc -p tsconfig.build.json && ts-node ../../scripts/bundle.ts",
     "generate": "ts-node generate.ts",
-    "clean": "rm -rf build coverage",
+    "clean": "rimraf build coverage index.ts",
     "lint": "eslint . --max-warnings 0",
     "test": "jest",
-    "reset": "rimraf .next .turbo node_modules"
+    "reset": "rimraf .turbo node_modules"
   },
   "dependencies": {
     "@foo-i18n/base": "workspace:*"

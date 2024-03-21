@@ -1,0 +1,35 @@
+---
+// @ts-ignore - unknown import (yet it is valid)
+import { ViewTransitions } from "astro:transitions";
+
+import Topbar from '../components/Topbar.astro';
+
+import { APP_NAME } from '../utils/constants';
+
+import "../styles/global.css";
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title ? `${title} - ` : ''}{APP_NAME}</title>
+    <ViewTransitions />
+  </head>
+  <body
+    class="antialiased min-h-screen bg-gradient-to-b from-[#1e1b4b] to-[#082f49] font-sans text-white"
+  >
+    <div class="min-h-screen flex flex-col">
+      <div
+        class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent"
+      >
+        <Topbar />
+      </div>
+      <div class="flex-1">
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>

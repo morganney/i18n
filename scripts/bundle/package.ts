@@ -39,6 +39,7 @@ const copyProps = new Set([
   'private',
   'publishConfig',
   'repository',
+  'types',
   'version',
 ]);
 
@@ -79,7 +80,7 @@ const bundlePackage = async (src: string, dest: string, packages: Map<string, st
     const _dependencies = result.dependencies as any;
     for (const [pkgName, version] of Object.entries(_dependencies)) {
       if ((version as string).startsWith('workspace:')) {
-        // TODO: find package version
+        _dependencies[pkgName] = packages.get(pkgName) ?? 'latest';
       }
     }
   }

@@ -1,0 +1,33 @@
+---
+import clsx from 'clsx';
+import type { MarkdownHeading } from 'astro';
+
+export type Props = {
+  heading: MarkdownHeading;
+};
+
+const { heading: { depth, slug, text} } = Astro.props;
+const href = `#${slug}`;
+
+---
+<a data-depth={depth} href={href} class={clsx("text-sm cursor-pointer text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300", {
+  "ml-0": depth === 1,
+  "ml-3": depth === 2,
+  "ml-6": depth === 3,
+  "ml-9": depth === 4,
+  "ml-12": depth > 4,
+})}>
+  {text}
+</a>
+<style>
+  a {
+    position: relative;
+  }
+  a:not([data-depth="1"])::before {
+    content: ">";
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+</style>

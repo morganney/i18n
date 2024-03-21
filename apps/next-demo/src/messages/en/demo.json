@@ -1,0 +1,7 @@
+{
+  "Hello world": "Hello world",
+  "{count} items": {
+    "one": "1 item",
+    "other": "{count} items"
+  }
+}

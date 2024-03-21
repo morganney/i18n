@@ -6,10 +6,10 @@ describe("Testing formatter", () => {
 
     expect(format("Hello {name}", { name: "John" })).toBe("Hello John");
 
-    // @ts-expect-error - Will require a second parameter
+    // @ts-expect-error - Expected 2 arguments, but got 1
     expect(format("Current year: {year}")).toBe("Current year: ?year");
 
-    // @ts-expect-error - Will require a second parameter
+    // @ts-expect-error - 'foo' does not exist in type '{ name: unknown; }'
     expect(format("Hello {name}", { foo: 1 })).toBe("Hello ?name");
 
     // @ts-expect-error - Allow empty placeholder, but require second parameter

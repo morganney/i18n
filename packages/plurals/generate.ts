@@ -157,14 +157,17 @@ async function createPluralFileContent(
 async function createIndexFileContent() {
   const content = await prettier.format(
     Object.keys(pluralFnDefs)
-      .map((locale) => `export { default as ${locale.replaceAll('-', '')}} from './${locale}';`)
+      .map((locale) => `export { default as ${locale.replaceAll('-', '')}} from './locale/${locale}';`)
+      .concat([
+        "export * from './types';"
+      ])
       .join("\n"),
     {
       parser: "typescript",
     }
   );
 
-  fs.writeFileSync("./src/locale/index.ts", content);
+  fs.writeFileSync("./src/index.ts", content);
 }
 
 function scanPluralData(pluralData: PluralsTypeData, type: PluralsType) {

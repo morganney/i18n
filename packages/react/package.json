@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "build": "pnpm clean && tsc -p tsconfig.build.json && ts-node ../../scripts/bundle.ts",
-    "clean": "rm -rf build coverage",
+    "clean": "rimraf build coverage",
     "lint": "eslint . --max-warnings 0",
     "test": "jest",
-    "reset": "rimraf .next .turbo node_modules"
+    "reset": "rimraf .turbo node_modules"
   },
   "main": "./build/index.js",
   "types": "./build/index.d.js",
@@ -21,6 +21,9 @@
     "@foo-i18n/base": "workspace:*",
     "@foo-i18n/plurals": "workspace:*",
     "@foo-i18n/t": "workspace:*",
+    "react": "^18.2.0"
+  },
+  "peerDependencies": {
     "react": "^18.2.0"
   },
   "devDependencies": {

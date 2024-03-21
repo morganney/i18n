@@ -1,0 +1,59 @@
+---
+import SidebarCategory from "./sidebar/Category.astro";
+import SidebarLink from "./sidebar/Link.astro";
+
+import type { MDXDocumentInstance } from "../types/docs";
+
+const documents = (await Astro.glob(
+  "../pages/docs/**/*.mdx"
+)) as MDXDocumentInstance[];
+
+const docsByPath = documents.reduce((map, doc) => {
+  if (doc.url) {
+    map.set(doc.url, doc);
+  }
+
+  return map;
+}, new Map<string, MDXDocumentInstance>());
+---
+
+<ul>
+  <li>
+    <SidebarCategory>Getting Started</SidebarCategory>
+    <ul>
+      <li>
+        <SidebarLink doc={docsByPath.get("/docs/about")} />
+      </li>
+    </ul>
+  </li>
+  <li>
+    <SidebarCategory>React Usage</SidebarCategory>
+    <ul>
+      <li>
+        <SidebarLink doc={docsByPath.get("/docs/react/installation")}>
+          Installation
+        </SidebarLink>
+      </li>
+      <li>
+        <SidebarLink doc={docsByPath.get("/docs/react/usage")}
+          >Usage</SidebarLink>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <SidebarCategory>API</SidebarCategory>
+    <ul>
+      <li>
+        <SidebarLink doc={docsByPath.get("/docs/api/translator")}
+          >Translator</SidebarLink>
+      </li>
+      <li>
+        <SidebarLink doc={docsByPath.get("/docs/api/plurals")}
+          >Plurals</SidebarLink>
+      </li>
+      <li>
+        <SidebarLink doc={docsByPath.get("/docs/api/react")}>React</SidebarLink>
+      </li>
+    </ul>
+  </li>
+</ul>
