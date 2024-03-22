@@ -6,7 +6,7 @@ const TopBar = () => {
     <div className="mx-auto max-w-7xl">
       <div className="mx-4 border-b border-slate-900/10 py-3 lg:mx-0 lg:border-0 lg:px-8 dark:border-slate-300/10">
         <div className="relative flex items-center">
-          <h1 className="my-0 py-0 text-2xl font-bold leading-5">
+          <h1 className="my-0 py-0 font-['Offside',sans-serif] text-xl font-bold leading-5">
             <a className="flex-none" href="/">
               {APP_NAME}
             </a>

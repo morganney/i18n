@@ -1,13 +1,12 @@
 ---
-import SidebarCategory from "./sidebar/Category.astro";
-import SidebarLink from "./sidebar/Link.astro";
+import SidebarCategory from './sidebar/Category.astro';
+import SidebarLink from './sidebar/Link.astro';
+import { getUrl } from '../utils/url';
 
-import type { MDXDocumentInstance } from "../types/docs";
-
-const basePath = import.meta.env.BASE_URL;
+import type { MDXDocumentInstance } from '../types/docs';
 
 const documents = (await Astro.glob(
-  "../pages/docs/**/*.mdx"
+  '../pages/docs/**/*.mdx'
 )) as MDXDocumentInstance[];
 
 const docsByPath = documents.reduce((map, doc) => {
@@ -17,7 +16,6 @@ const docsByPath = documents.reduce((map, doc) => {
 
   return map;
 }, new Map<string, MDXDocumentInstance>());
-
 ---
 
 <ul>
@@ -25,7 +23,7 @@ const docsByPath = documents.reduce((map, doc) => {
     <SidebarCategory>Getting Started</SidebarCategory>
     <ul>
       <li>
-        <SidebarLink doc={docsByPath.get(`${basePath}/docs/about`)} />
+        <SidebarLink doc={docsByPath.get(getUrl('/docs/about'))} />
       </li>
     </ul>
   </li>
@@ -33,13 +31,14 @@ const docsByPath = documents.reduce((map, doc) => {
     <SidebarCategory>React Usage</SidebarCategory>
     <ul>
       <li>
-        <SidebarLink doc={docsByPath.get(`${basePath}/docs/react/installation`)}>
+        <SidebarLink doc={docsByPath.get(getUrl('/docs/react/installation'))}>
           Installation
         </SidebarLink>
       </li>
       <li>
-        <SidebarLink doc={docsByPath.get(`${basePath}/docs/react/usage`)}
-          >Usage</SidebarLink>
+        <SidebarLink doc={docsByPath.get(getUrl('/docs/react/usage'))}
+          >Usage</SidebarLink
+        >
       </li>
     </ul>
   </li>
@@ -47,15 +46,19 @@ const docsByPath = documents.reduce((map, doc) => {
     <SidebarCategory>API</SidebarCategory>
     <ul>
       <li>
-        <SidebarLink doc={docsByPath.get(`${basePath}/docs/api/translator`)}
-          >Translator</SidebarLink>
+        <SidebarLink doc={docsByPath.get(getUrl('/docs/api/translator'))}
+          >Translator</SidebarLink
+        >
       </li>
       <li>
-        <SidebarLink doc={docsByPath.get(`${basePath}/docs/api/plurals`)}
-          >Plurals</SidebarLink>
+        <SidebarLink doc={docsByPath.get(getUrl('/docs/api/plurals'))}
+          >Plurals</SidebarLink
+        >
       </li>
       <li>
-        <SidebarLink doc={docsByPath.get(`${basePath}/docs/api/react`)}>React</SidebarLink>
+        <SidebarLink doc={docsByPath.get(getUrl('/docs/api/react'))}
+          >React</SidebarLink
+        >
       </li>
     </ul>
   </li>

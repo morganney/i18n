@@ -1,21 +1,86 @@
 ---
-import { DiGithubBadge } from "react-icons/di";
-import { APP_NAME } from "../utils/constants";
-
-const basePath = import.meta.env.BASE_URL;
-
+import { DiGithubBadge } from 'react-icons/di';
+import { MdMenu } from 'react-icons/md';
+import { APP_NAME } from '../utils/constants';
+import { getUrl } from '../utils/url';
 ---
-<div class="max-w-7xl mx-auto">
-  <div class="py-3 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">
-    <div class="relative flex items-center">
-      <h1 class="py-0 my-0 leading-5 text-2xl font-bold">
-        <a class="flex-none" href={`${basePath}/`}>{APP_NAME}</a>
-      </h1>
 
-      <div class="ml-auto flex-0">
-          <a href="https://github.com/yanickrochon/i18n" target="_blank">
-            <DiGithubBadge size={32} />
-          </a>
+<script>
+  const mobileDrawerToggle = document.getElementById(
+    'mobileDrawer'
+  ) as HTMLInputElement;
+  const layoutHeaders = document.getElementsByTagName('header');
+  const layoutMains = document.getElementsByTagName('main');
+
+  const updateScrollbars = () => {
+    const checked = mobileDrawerToggle.checked;
+    const showPadding =
+      checked && document.body.clientHeight > window.innerHeight;
+
+    for (const header of layoutHeaders) {
+      if (showPadding) {
+        header.classList.add('mobile-menu-padding');
+      } else {
+        header.classList.remove('mobile-menu-padding');
+      }
+    }
+    for (const main of layoutMains) {
+      if (showPadding) {
+        main.classList.add('mobile-menu-padding');
+      } else {
+        main.classList.remove('mobile-menu-padding');
+      }
+    }
+  };
+
+  mobileDrawerToggle.addEventListener('change', updateScrollbars);
+  window.addEventListener('resize', () => {
+    mobileDrawerToggle.checked = false;
+    updateScrollbars();
+  });
+</script>
+
+<div class="max-w-7xl mx-auto">
+  <div
+    class="border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0"
+  >
+    <div class="drawer">
+      <input id="mobileDrawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <div class="relative flex items-center">
+          <!-- Navbar -->
+          <div class="flex-0 lg:hidden pr-4">
+            <label
+              for="mobileDrawer"
+              aria-label="open sidebar"
+              class="btn btn-square btn-ghost"
+            >
+              <MdMenu size={24} />
+            </label>
+          </div>
+          <h1
+            class="flex-1 font-['Offside',sans-serif] py-4 my-0 leading-5 text-xl font-bold"
+          >
+            <a href={getUrl('/')}>{APP_NAME}</a>
+          </h1>
+
+          <div class="ml-auto flex-0">
+            <a href="https://github.com/yanickrochon/i18n" target="_blank">
+              <DiGithubBadge size={32} />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="drawer-side lg:hidden backdrop-blur-lg bg-white/95 dark:bg-black/10"
+      >
+        <label
+          for="mobileDrawer"
+          aria-label="close sidebar"
+          class="drawer-overlay"></label>
+        <nav class="pl-10 pr-24 py-10 w-auto min-h-full bg-slate-800">
+          <slot name="sidebar" />
+        </nav>
       </div>
     </div>
   </div>

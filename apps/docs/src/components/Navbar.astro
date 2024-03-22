@@ -7,17 +7,23 @@ export type Props = {
 };
 
 const { headings } = Astro.props;
-
 ---
-<aside class="fixed bottom-0 right-[max(0px,calc(50%-40rem))] top-14 z-20 hidden w-72 overflow-y-auto px-8 py-10 xl:block">
-  <div class="pt-8 pb-4 text-sm text-slate-700 dark:text-slate-400 border-current font-semibold ">
+
+<aside
+  class="fixed bottom-0 right-[max(0px,calc(50%-40rem))] top-14 z-20 hidden w-72 overflow-y-auto px-8 py-10 xl:block"
+>
+  <div
+    class="pt-8 pb-4 text-sm text-slate-700 dark:text-slate-400 border-current font-semibold"
+  >
     On this page
   </div>
   <ul>
-    {headings.map(heading => (
-      <li class="pb-1">
-        <Heading heading={heading} />
-      </li>  
-    ))}
+    {
+      headings.map((heading) => (
+        <li class="pb-1">
+          <Heading heading={heading} />
+        </li>
+      ))
+    }
   </ul>
 </aside>

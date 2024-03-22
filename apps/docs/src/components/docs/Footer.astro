@@ -1,4 +1,35 @@
 ---
+import fs from 'fs/promises';
+import { format } from 'date-fns';
 
+import { DiGithubBadge } from 'react-icons/di';
+import { relativeToRoot } from '../../utils/path';
+import { REPO_URL } from '../../utils/constants';
+
+import type { MarkdownLayoutProps } from 'astro';
+import type { DocumentationHeaders } from '../../types/docs';
+
+export type Props = MarkdownLayoutProps<DocumentationHeaders>;
+
+const { frontmatter } = Astro.props;
+
+const file = frontmatter.file;
+
+const stat = await fs.stat(file);
+const relativeFile = relativeToRoot(file);
+
+const lastModifiedDate = stat.mtime;
+const githubHref = `${REPO_URL}/tree/main/${relativeFile}`;
 ---
-<footer class="flex-0 border-t border-t-slate-700 pt-8">Footer</footer>
+
+<footer class="flex justify-between flex-0 border-t border-t-slate-700 pt-8">
+  <div>
+    Last modified: {format(lastModifiedDate.toISOString(), 'PPP')}
+  </div>
+  <div>
+    <a class="flex items-center gap-1" href={githubHref} target="_blank">
+      <DiGithubBadge />
+      View on Github
+    </a>
+  </div>
+</footer>

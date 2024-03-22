@@ -1,11 +1,32 @@
 ---
 import MySiteLayout from '../layouts/MainLayout.astro';
-
+import { getUrl } from '../utils/url';
 ---
+
 <MySiteLayout title="Home Page">
   <div class="relative mx-auto max-w-7xl">
-    <main class="py-10">
-
+    <main class="py-10 lg:py-20">
+      <div class="hero">
+        <div class="hero-overlay bg-opacity-0"></div>
+        <div class="hero-content text-center text-neutral-content">
+          <div>
+            <h1
+              class="mb-5 text-4xl md:text-5xl font-bold max-w-xs md:max-w-md mx-auto"
+            >
+              Type-safe localisation strings
+            </h1>
+            <p class="mb-16 lg:mb-24 max-w-xl lg:max-w-3xl mx-auto">
+              Foo i18n is an translation library for your projects that
+              abstracts away the complexity of handling string interpolation,
+              plurals, etc. It is at it's core framework agnostic and provides
+              an lean API which can easily be extended.
+            </p>
+            <a class="btn btn-primary" href={getUrl('/docs/about')}
+              >Get Started</a
+            >
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 </MySiteLayout>

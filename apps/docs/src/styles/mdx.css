@@ -1,29 +1,29 @@
-main h1,
-main h2,
-main h3,
-main h4,
-main h5 {
+section[aria-label='content'] h1,
+section[aria-label='content'] h2,
+section[aria-label='content'] h3,
+section[aria-label='content'] h4,
+section[aria-label='content'] h5 {
   font-family: 'Genos', sans-serif;
   position: relative;
 }
 
-main h1:not(:nth-of-type(1)) {
+section[aria-label='content'] h1:not(:nth-of-type(1)) {
   margin-top: 32px;
 }
 
-main h1,
-main h2,
-main h3,
-main h4,
-main h5 {
+section[aria-label='content'] h1,
+section[aria-label='content'] h2,
+section[aria-label='content'] h3,
+section[aria-label='content'] h4,
+section[aria-label='content'] h5 {
   cursor: pointer;
 }
 
-main h1:hover::before,
-main h2:hover::before,
-main h3:hover::before,
-main h4:hover::before,
-main h5:hover::before {
+section[aria-label='content'] h1:hover::before,
+section[aria-label='content'] h2:hover::before,
+section[aria-label='content'] h3:hover::before,
+section[aria-label='content'] h4:hover::before,
+section[aria-label='content'] h5:hover::before {
   content: '#';
   position: absolute;
   font-size: 90%;
@@ -32,32 +32,33 @@ main h5:hover::before {
   transform: translateY(-50%) translateX(-120%);
 }
 
-main h1 {
+section[aria-label='content'] h1 {
   font-size: 240%;
   font-weight: 500;
 }
-main h2 {
+section[aria-label='content'] h2 {
   font-size: 200%;
   font-weight: 400;
 }
-main h3 {
+section[aria-label='content'] h3 {
   font-size: 160%;
   font-weight: 400;
 }
-main h4 {
+section[aria-label='content'] h4 {
   font-size: 140%;
   font-weight: 300;
 }
-main h5 {
+section[aria-label='content'] h5 {
   font-size: 120%;
   font-weight: 300;
 }
 
-main p {
+section[aria-label='content'] p {
   padding: 4px 0px 8px 0px;
 }
 
-main pre {
+section[aria-label='content'] pre {
+  margin: 8px 0px;
   padding: 8px 12px;
   border: 1px solid rgb(148, 163, 184);
   border-radius: 16px;
@@ -69,14 +70,14 @@ main pre {
   cursor: text;
 }
 
-main code {
+section[aria-label='content'] pre code {
   font-family: 'Kode Mono', monospace;
   font-weight: 500;
   font-style: normal;
   z-index: 1;
 }
 
-main code::before {
+section[aria-label='content'] pre code::before {
   content: ' ';
   position: absolute;
   top: 0;
@@ -88,10 +89,10 @@ main code::before {
   -moz-user-select: none;
 }
 
-main code .line {
+section[aria-label='content'] pre code .line {
   counter-increment: line;
 }
-main code .line::before {
+section[aria-label='content'] pre code .line::before {
   content: counter(line);
   display: inline-block;
   width: 2em;

@@ -1,19 +1,19 @@
 ---
 // @ts-ignore - unknown import (yet it is valid)
-import { ViewTransitions } from "astro:transitions";
-import Sidebar from "../components/Sidebar.astro";
-import Navbar from "../components/Navbar.astro";
+import { ViewTransitions } from 'astro:transitions';
+import Sidebar from '../components/Sidebar.astro';
+import Navbar from '../components/Navbar.astro';
 
-import Topbar from "../components/Topbar.astro";
-import Footer from "../components/docs/Footer.astro";
+import Topbar from '../components/Topbar.astro';
+import Footer from '../components/docs/Footer.astro';
 
-import type { MarkdownLayoutProps } from "astro";
-import type { DocumentationHeaders } from "../types/docs";
+import type { MarkdownLayoutProps } from 'astro';
+import type { DocumentationHeaders } from '../types/docs';
 
-import "../styles/global.css";
-import "../styles/mdx.css";
+import '../styles/global.css';
+import '../styles/mdx.css';
 
-import { APP_NAME } from "../utils/constants";
+import { APP_NAME } from '../utils/constants';
 
 export type Props = MarkdownLayoutProps<DocumentationHeaders>;
 
@@ -24,9 +24,9 @@ const { frontmatter, headings } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={frontmatter.description || ""} />
+    <meta name="description" content={frontmatter.description || ''} />
     <title>
-      {frontmatter.title ? `${frontmatter.title} - ` : ""}{APP_NAME}
+      {frontmatter.title ? `${frontmatter.title} - ` : ''}{APP_NAME}
     </title>
     <ViewTransitions />
   </head>
@@ -34,34 +34,40 @@ const { frontmatter, headings } = Astro.props;
     class="antialiased min-h-screen bg-gradient-to-b from-[#1e1b4b] to-[#082f49] font-sans text-white"
   >
     <div class="min-h-screen flex flex-col">
-      <div
-        class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent"
+      <header
+        aria-label="header"
+        class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 dark:bg-transparent shadow-sm shadow-white/50 dark:shadow-black/50"
       >
-        <Topbar />
-      </div>
+        <Topbar>
+          <Sidebar slot="sidebar" />
+        </Topbar>
+      </header>
 
-      <div class="flex flex-1">
+      <main class="flex flex-1">
         <div class="relative mx-auto max-w-7xl flex flex-1">
           <div class="flex flex-col flex-1 mx-4 lg:ml-60 xl:mr-72">
-            <main
+            <div
               class="flex flex-1 flex-col pt-12 pb-20 lg:pl-8 lg:border-l lg:border-l-slate-700"
             >
-              <section class="flex-1 pb-10">
+              <section aria-label="content" class="flex-1 pb-10">
                 <p
                   class="text-sm text-emerald-500 border-current font-semibold dark:text-emerald-400"
                 >
-                  {frontmatter.breadcrumbs?.join(" > ")}
+                  {frontmatter.breadcrumbs?.join(' > ')}
                 </p>
                 <slot />
               </section>
 
-              <Footer />
-            </main>
+              <section aria-label="footer">
+                <Footer {...Astro.props} />
+              </section>
+            </div>
 
             <Navbar headings={headings} />
           </div>
 
           <section
+            aria-label="sidebar"
             class="fixed flex-0 inset-0 left-[max(0px,calc(50%-40rem))] right-0 top-14 z-20 order-first hidden w-60 overflow-y-auto px-4 pt-10 pb-10 lg:block lg:px-8"
           >
             <nav class="relative lg:text-sm lg:leading-6">
@@ -69,7 +75,7 @@ const { frontmatter, headings } = Astro.props;
             </nav>
           </section>
         </div>
-      </div>
+      </main>
     </div>
   </body>
 </html>

@@ -10,3 +10,47 @@ breadcrumbs: ['Getting started']
 Type-safe translation strings for your JavaScript and TypeScript projects.
 
 # Why another localisation module?
+
+Because it's time for a internationalisation project which truly does not
+get in your way, does not import unnecessary features, and does not do
+unwanted actions.
+
+This project does string interpolation and localisation, and lets you
+handle the rest.
+
+# Static validation
+
+Wouldn't it be great if your translation function auto-complete translation
+strings out-of-the-box? By using TypeScript analysis, this is quite possible
+indeed!
+
+Consider this JSON message file:
+
+```json
+// ./messages/fr.json
+{
+  "authentication": {
+    "Username": "Nom d'utilisateur",
+    "Password": "Mot de passe",
+    "Remember me": "Se souvenir de moi"
+  }
+}
+```
+
+The following translator `t` will provide auto-completion for all available
+namespaces, and all strings withing the selected namespace:
+
+```ts
+import { translate } from '@foo-i18n/t';
+import messages from './messages/fr.json';
+
+const translator = translate(messages);
+const t = translator('authentication');
+
+console.log(t('Username'));
+// "Nom d'utilisateur"
+```
+
+Pretty normal looking, except that all arguments are provided through
+auto-completion. Any misspelling or missing translation strings will
+immediately be reported by TypeScript.
