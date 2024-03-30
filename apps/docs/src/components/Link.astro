@@ -1,0 +1,13 @@
+---
+import { getUrl } from '../utils/url';
+
+export type Props = {
+  href: string;
+};
+
+const { href: _href } = Astro.props;
+
+const href = getUrl(_href);
+---
+
+<a href={href}><slot /></a>

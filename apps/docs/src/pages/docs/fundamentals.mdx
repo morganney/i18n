@@ -8,6 +8,7 @@ breadcrumbs: ['Getting started']
 import LocaleTabs from '../../components/tabs/LocaleTabs.astro';
 import Code from '../../components/Code.astro';
 import Highlight from '../../components/Highlight.astro';
+import Link from '../../components/Link.astro';
 
 # Fundamentals
 
@@ -392,5 +393,6 @@ console.log(text);
 </Code>
 
 <Highlight>
-  Check [plurals](./api/plurals) more information about pluraity.
+  Check <Link href="/docs/api/plurals">{'plurals'}</Link> more information about
+  pluraity.
 </Highlight>
