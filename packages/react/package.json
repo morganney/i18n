@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@foo-i18n/base": "workspace:*",
-    "@foo-i18n/plurals": "workspace:*",
     "@foo-i18n/t": "workspace:*",
     "react": "^18.2.0"
   },

@@ -1,14 +1,12 @@
-import { format } from "./format";
+import { format } from './format';
 import {
   defaultPlurality,
   genderPriority,
-  type Gender,
-  type Plurality,
-} from "@foo-i18n/base";
-import type {
   Translate,
   TranslateValueOptions,
-} from "./types";
+  type Gender,
+  type Plurality,
+} from '@foo-i18n/base';
 
 export const translate: Translate =
   (messages) =>
@@ -17,7 +15,7 @@ export const translate: Translate =
     let translated: any = messages[ns]?.[text] ?? text;
 
     // plurality?
-    if (translated && typeof translated !== "string") {
+    if (translated && typeof translated !== 'string') {
       const plurality: Plurality =
         (values as TranslateValueOptions)?.plurality ?? defaultPlurality;
 
@@ -25,7 +23,7 @@ export const translate: Translate =
     }
 
     // gender?
-    if (translated && typeof translated !== "string") {
+    if (translated && typeof translated !== 'string') {
       const gender: Gender | undefined =
         (values as TranslateValueOptions)?.gender ??
         genderPriority.find((gender) => gender in translated);

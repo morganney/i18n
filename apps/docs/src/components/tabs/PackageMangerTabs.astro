@@ -1,0 +1,102 @@
+---
+import { generateUniqueId } from '../../utils/strings';
+
+type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun';
+
+export type Props = {
+  headers: Partial<Record<PackageManager, string>>;
+  defaultSelected?: PackageManager;
+};
+
+const { headers, defaultSelected } = Astro.props;
+
+const inputName = generateUniqueId('tab_');
+
+const hasNpm = Astro.slots.has('npm');
+const hasPnpm = Astro.slots.has('pnpm');
+const hasYarn = Astro.slots.has('yarn');
+const hasBun = Astro.slots.has('bun');
+
+const selected: PackageManager | null =
+  defaultSelected ??
+  (hasNpm
+    ? 'npm'
+    : hasPnpm
+      ? 'pnpm'
+      : hasYarn
+        ? 'yarn'
+        : hasBun
+          ? 'bun'
+          : null);
+---
+
+<div role="tablist" class="tabs tabs-lifted bg-transparent code-shell mt-4">
+  {
+    hasNpm ? (
+      <>
+        <input
+          type="radio"
+          name={inputName}
+          role="tab"
+          class="tab tab-border-none checked:tab-border bg-slate-700/50 [--tab-bg:#1e293b] [--tab-border-color:#10b981]"
+          aria-label={headers?.npm ?? 'npm'}
+          checked={selected === 'npm'}
+        />
+        <div role="tabpanel" class="tab-content">
+          <slot name="npm" />
+        </div>
+      </>
+    ) : null
+  }
+  {
+    hasPnpm ? (
+      <>
+        <input
+          type="radio"
+          name={inputName}
+          role="tab"
+          class="tab tab-border-none checked:tab-border bg-slate-700/50 [--tab-bg:#1e293b] [--tab-border-color:#10b981]"
+          aria-label={headers?.pnpm ?? 'pnpm'}
+          checked={selected === 'pnpm'}
+        />
+        <div role="tabpanel" class="tab-content">
+          <slot name="pnpm" />
+        </div>
+      </>
+    ) : null
+  }
+  {
+    hasYarn ? (
+      <>
+        <input
+          type="radio"
+          name={inputName}
+          role="tab"
+          class="tab tab-border-none checked:tab-border bg-slate-700/50 [--tab-bg:#1e293b] [--tab-border-color:#10b981]"
+          aria-label={headers?.yarn ?? 'yarn'}
+          checked={selected === 'yarn'}
+        />
+        <div role="tabpanel" class="tab-content">
+          <slot name="yarn" />
+        </div>
+      </>
+    ) : null
+  }
+  {
+    hasBun ? (
+      <>
+        <input
+          type="radio"
+          name={inputName}
+          role="tab"
+          class="tab tab-border-none checked:tab-border bg-slate-700/50 [--tab-bg:#1e293b] [--tab-border-color:#10b981]"
+          aria-label={headers?.bun ?? 'bun'}
+          checked={selected === 'bun'}
+        />
+        <div role="tabpanel" class="tab-content">
+          <slot name="bun" />
+        </div>
+      </>
+    ) : null
+  }
+</div>

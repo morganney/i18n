@@ -1,9 +1,183 @@
 ---
 layout: ../../../layouts/DocsLayout.astro
-title: "Usage"
-description: "Usage foo i18n for React projects"
+title: 'React Usage'
+description: 'Use foo i18n with React projects'
+breadcrumbs: ['Integration']
 ---
 
-# foo i18n React usage
+import Code from '../../../components/Code.astro';
+import PackageMangerTabs from '../../../components/tabs/PackageMangerTabs.astro';
 
-*todo*
+# React Usage
+
+## installation
+
+<PackageMangerTabs>
+  <div slot="npm">
+
+```sh
+$ npm i @foo-i18n/react
+```
+
+  </div>
+  <div slot="pnpm">
+
+```sh
+$ pnpm i @foo-i18n/react
+```
+
+  </div>
+  <div slot="yarn">
+
+```sh
+$ yarn add @foo-i18n/react
+```
+
+  </div>
+  <div slot="bun">
+
+```sh
+$ bun install @foo-i18n/react
+```
+
+  </div>
+</PackageMangerTabs>
+
+## Declaration
+
+<Code file="./src/i18n/types.ts">
+
+```ts
+import type {
+  // ...
+  UseAppTranslation,
+} from '@foo-i18n/react/types';
+
+//...
+
+export type UseAppTranslation = UseAppTranslation<AppMessages>;
+```
+
+</Code>
+
+## Message Provider
+
+The translation context should be as close as possible to the root
+of the application, preferably at the layout level, in order to have
+a wider accessibility with fewer update requirement.
+
+<Code file="./src/i18n/Provider.ts">
+
+```ts
+"use client";
+import {
+  TranslationProvider
+} from "@foo-i18n/react/TranslationProvider";
+import plurals from "@foo-i18n/plurals";
+import type { AppLocale, AppMessages } from "@/i18n/types";
+
+export type AppTranslationProviderProps = {
+  locale: AppLocale;
+  messages: AppMessages;
+  children: React.ReactNode;
+};
+
+const AppTranslationProvider = ({
+  locale,
+  messages,
+  children,
+}: AppTranslationProviderProps) => {
+  const plural = plurals[locale];
+
+  return (
+    <TranslationProvider
+      locale={locale}
+      messages={messages}
+      plural={plural}
+    >
+      {children}
+    </TranslationProvider>
+  );
+};
+
+export default AppTranslationProvider;
+```
+
+</Code>
+
+## Translation hook
+
+To enable code auto-completion while using the translation hook, a typed
+hook should be returned.
+
+<Code file="./src/i18n/hooks.ts">
+
+```ts
+import useTranslation from '@foo-i18n/react/useTranslation';
+import type { UseAppTranslation } from './types';
+
+/**
+ * Return a typed hook
+ */
+export const useAppTranslation = useTranslation as UseAppTranslation;
+```
+
+</Code>
+
+## Putting it all together
+
+The following example uses [Next.js](https://nextjs.org/)'s React server
+components, but it may very well be adapted in static sites, or even
+in client-only situations.
+
+<Code file="./src/app/page.ts">
+
+```tsx
+import { loadMessages } from '@/i18n/messages';
+import AppTranslationProvider from '@/i18n/Provider';
+import PageComponent from '@/components/PageComponent';
+import type { AppLocale } from '@/i18n/types';
+
+export default async function Page() {
+  // NOTE: obtain locale from route params or middleware
+  const locale: AppLocale = 'en';
+  const messages = await loadMessages(locale);
+
+  return (
+    <div className="py-10">
+      <AppTranslationProvider locale={locale} messages={messages}>
+        <PageComponent />
+      </AppTranslationProvider>
+    </div>
+  );
+}
+```
+
+</Code>
+
+<Code file="./src/components/PageComponent.ts">
+
+```tsx
+'use client';
+
+import { useAppTranslation } from '@/i18n/hooks';
+
+const TranslateText = () => {
+  const { t, plural } = useAppTranslation('people');
+  const count = 7;
+  const plurality = plural.ordinal(count);
+
+  return (
+    <div>
+      {t('There are {count} people', {
+        count,
+        plurality,
+      })}
+    </div>
+  );
+};
+
+export default TranslateText;
+```
+
+</Code>

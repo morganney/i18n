@@ -1,0 +1,14 @@
+{
+  "There are {count} people": {
+    "one": {
+      "f": "There is a woman",
+      "m": "There is a man",
+      "n": "There is a person"
+    },
+    "other": {
+      "f": "There are {count} women",
+      "m": "There are {count} men",
+      "n": "There are {count} people"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+---
+import { generateUniqueId } from '../../utils/strings';
+
+type Locale = 'en' | 'es' | 'fr';
+
+export type Props = {
+  headers: Partial<Record<Locale, string>>;
+  defaultSelected?: Locale;
+};
+
+const { headers, defaultSelected } = Astro.props;
+
+const inputName = generateUniqueId('tab_');
+
+const hasEn = Astro.slots.has('en');
+const hasEs = Astro.slots.has('es');
+const hasFr = Astro.slots.has('fr');
+
+const selected: Locale | null =
+  defaultSelected ?? (hasEn ? 'en' : hasEs ? 'es' : hasFr ? 'fr' : null);
+---
+
+<div role="tablist" class="tabs tabs-lifted bg-transparent code-shell my-4">
+  {
+    hasEn ? (
+      <>
+        <input
+          type="radio"
+          name={inputName}
+          role="tab"
+          class="tab tab-border-none checked:tab-border bg-slate-700/50 [--tab-bg:#1e293b] [--tab-border-color:#10b981]"
+          aria-label={headers?.en ?? 'en'}
+          checked={selected === 'en'}
+        />
+        <div role="tabpanel" class="tab-content">
+          <slot name="en" />
+        </div>
+      </>
+    ) : null
+  }
+  {
+    hasFr ? (
+      <>
+        <input
+          type="radio"
+          name={inputName}
+          role="tab"
+          class="tab tab-border-none checked:tab-border bg-slate-700/50 [--tab-bg:#1e293b] [--tab-border-color:#10b981]"
+          aria-label={headers?.fr ?? 'fr'}
+          checked={selected === 'fr'}
+        />
+        <div role="tabpanel" class="tab-content">
+          <slot name="fr" />
+        </div>
+      </>
+    ) : null
+  }
+  {
+    hasEs ? (
+      <>
+        <input
+          type="radio"
+          name={inputName}
+          role="tab"
+          class="tab tab-border-none checked:tab-border bg-slate-700/50 [--tab-bg:#1e293b] [--tab-border-color:#10b981]"
+          aria-label={headers?.es ?? 'es'}
+          checked={selected === 'es'}
+        />
+        <div role="tabpanel" class="tab-content">
+          <slot name="es" />
+        </div>
+      </>
+    ) : null
+  }
+</div>

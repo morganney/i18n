@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Foo I18N",
+  title: "foo i18n",
   description: "Type-safe translation",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };

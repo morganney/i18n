@@ -1,5 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&family=Genos:ital,wght@0,100..900;1,100..900&family=Kode+Mono:wght@400..700&family=Offside&display=swap');
 
+:root {
+  --scrollbar-color-thumb: #334155;
+  --scrollbar-color-track: #0f172a;
+  --scrollbar-width: thin;
+  --scrollbar-width-legacy: 10px;
+}
+
+/* Modern browsers with `scrollbar-*` support */
+@supports (scrollbar-width: auto) {
+  :root {
+    scrollbar-color: var(--scrollbar-color-thumb) var(--scrollbar-color-track);
+    scrollbar-width: var(--scrollbar-width) !important;
+  }
+}
+
+:root::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color-thumb);
+  border-radius: 10px;
+}
+:root::-webkit-scrollbar-track {
+  background: var(--scrollbar-color-track);
+  border-radius: 10px;
+}
+:root::-webkit-scrollbar {
+  width: var(--scrollbar-width-legacy) !important;
+  height: var(--scrollbar-width-legacy) !important;
+}
+
+/* when scrolling to a target, make sure it is smooth */
+:root {
+  scroll-behavior: smooth;
+}
+
+/* when scrolling to a target, make sure the target is below the top-bar */
+:target {
+  scroll-margin-top: 64px;
+}
+
 html:has(.drawer-toggle:checked) {
   overflow-y: hidden;
   scrollbar-gutter: auto;

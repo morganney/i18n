@@ -1,0 +1,14 @@
+{
+  "There are {count} people": {
+    "one": {
+      "f": "Il y a une femme",
+      "m": "Il y a un homme",
+      "n": "Il y a une personne"
+    },
+    "other": {
+      "f": "Il y a {count} femmes",
+      "m": "Il y a {count} hommes",
+      "n": "Il y a {count} personnes"
+    }
+  }
+}

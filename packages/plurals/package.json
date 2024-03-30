@@ -14,8 +14,7 @@
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "exports": {
-    ".": "./build/index.js",
-    "./types": "./build/types.js"
+    ".": "./build/index.js"
   },
   "scripts": {
     "build": "pnpm clean && pnpm generate && tsc -p tsconfig.build.json && ts-node ../../scripts/bundle.ts",
@@ -34,7 +33,7 @@
     "@jest/types": "29.6.3",
     "@turbo/gen": "^1.12.4",
     "@types/eslint": "^8.56.5",
-    "@types/jest" : "^29.5.12",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
     "cldr-data": "^36.0.1",
     "eslint": "^8.57.0",

@@ -1,0 +1,396 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: 'Fundamentals'
+description: 'foo i18n fundamentals'
+breadcrumbs: ['Getting started']
+---
+
+import LocaleTabs from '../../components/tabs/LocaleTabs.astro';
+import Code from '../../components/Code.astro';
+import Highlight from '../../components/Highlight.astro';
+
+# Fundamentals
+
+## Messages
+
+All localized strings are stored in a dictionary, which keys can be indexed
+for static validation. In short, errors or missing strings can easily be
+identified at design time, or intercepted during test or build tasks.
+
+### Terminology
+
+<div class="my-4 rounded-lg border border-emerald-500 bg-slate-900/50">
+  <table class="table">
+    <tbody>
+      <tr class="border-b-emerald-500">
+        <td>`Locale`</td>
+        <td>
+          Tde language identifier, optionally including regional information.
+          For example, `en`, `en-US`, `en-GB`, etc. See [IETF BCP 47 language
+          tags](https://en.wikipedia.org/wiki/IETF_language_tag) for more
+          information.
+        </td>
+      </tr>
+      <tr class="border-b-emerald-500">
+        <td>`Gender`</td>
+        <td>
+          Certain languages have grammatical gender, a classification system for
+          nouns, primarily to reduce ambiguity in speech and enhance
+          communication effectiveness. The possible values are:
+          <table class="table">
+            <tbody>
+              <tr class="border-b-emerald-500">
+                <td>`m`</td>
+                <td>male</td>
+              </tr>
+              <tr class="border-b-emerald-500">
+                <td>`f`</td>
+                <td>female</td>
+              </tr>
+              <tr class="border-b-emerald-500">
+                <td>`n`</td>
+                <td>neutral, this is the default value</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr class="border-b-emerald-500">
+        <td>`Plurality`</td>
+        <td>
+          <table class="table">
+            <tbody>
+              <tr class="border-b-emerald-500">
+                <td>`zero`</td>
+                <td>Depending on the language; where there's nothing.</td>
+              </tr>
+              <tr class="border-b-emerald-500">
+                <td>`one`</td>
+                <td>
+                  Depending on the language; where there's an unicity in number.
+                </td>
+              </tr>
+              <tr class="border-b-emerald-500">
+                <td>`two`</td>
+                <td>Depending on the language; where there's a pair.</td>
+              </tr>
+              <tr class="border-b-emerald-500">
+                <td>`few`</td>
+                <td>
+                  Depending on the language; where there's a small amount.
+                </td>
+              </tr>
+              <tr class="border-b-emerald-500">
+                <td>`many`</td>
+                <td>
+                  Depending on the language; where there's a fairly large
+                  amount.
+                </td>
+              </tr>
+              <tr class="border-b-emerald-500">
+                <td>`other`</td>
+                <td>
+                  Any other specification goes here. This is the default
+                  langauge key; where we may find fractions, negative or
+                  otherwise unspecified or very large numbers. For any
+                  translation, this should always be specified at all times.
+                  This is also the fallback translation in case other language
+                  keys or not defined.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr class="border-b-emerald-500">
+        <td>`PluralRule`</td>
+        <td>
+          Different plurality rules whether it is an order (cardinal, e.g.,
+          rank) value or a distinct numeric (ordinal, e.g., quantity) value
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Suggested project structure
+
+A project structure may keep the messages in a separate folder, or inside
+an `src` directory, each duplicated in the available locales.
+
+<Code showLineNumbers={false}>
+
+```
+├── messages
+│   ├── en
+│   │   ├── people.json
+│   │   └── ...
+│   ├── fr
+│   │   ├── people.json
+│   │   └── ...
+│   └── ...
+└── src
+    ├── app
+    │   └── ...
+    ├── i18n
+    │   ├── messages.ts
+    │   └── types.ts
+    └── ...
+```
+
+</Code>
+
+### Data
+
+Messages are represented in their original form, with arguments, etc. as
+constants. At it's simplest, a messages dictionary is very straightforward.
+
+<LocaleTabs defaultSelected="fr">
+  <div slot="en">
+    <Code file="./messages/en/people.json" noPadding>
+
+```json
+{
+  "There are {count} people": "There are {count} people"
+}
+```
+
+    </Code>
+
+  </div>
+  <div slot="fr">
+    <Code file="./messages/fr/people.json" noPadding>
+
+```json
+{
+  "There are {count} people": "Il y a {count} personnes"
+}
+```
+
+    </Code>
+
+  </div>
+</LocaleTabs>
+
+In the case above, perhaps the translated message should properly display
+the message according to the `{count}` argument value. If a message plurality
+is defined, the default `other` will be used in absence of plurality value.
+
+<LocaleTabs defaultSelected="fr">
+  <div slot="en">
+    <Code file="./messages/en/people.json" noPadding>
+
+```json
+{
+  "There are {count} people": {
+    "one": "There is one person",
+    "other": "There are {count} people"
+  }
+}
+```
+
+    </Code>
+
+  </div>
+  <div slot="fr">
+    <Code file="./messages/fr/people.json" noPadding>
+
+```json
+{
+  "There are {count} people": {
+    "zero": "Il n'y a personne",
+    "one": "Il y a une personne",
+    "other": "Il y a {count} personnes"
+  }
+}
+```
+
+    </Code>
+
+  </div>
+</LocaleTabs>
+
+Again, some language differentiate between male and female genders, and
+certain strings may require different translations per gender. If a message
+gender is defined, the default `n` will be used in the absence of gender value.
+
+<LocaleTabs defaultSelected="fr">
+  <div slot="en">
+    <Code file="./messages/en/people.json" noPadding>
+
+```json
+{
+  "There are {count} people": {
+    "f": "There are {count} women",
+    "m": "There are {count} man",
+    "n": "There are {count} people"
+  }
+}
+```
+
+    </Code>
+
+  </div>
+  <div slot="fr">
+    <Code file="./messages/fr/people.json" noPadding>
+
+```json
+{
+  "There are {count} people": {
+    "f": "Il y a {count} femmes",
+    "m": "Il y a {count} hommes",
+    "n": "Il y a {count} personnes"
+  }
+}
+```
+
+    </Code>
+
+  </div>
+</LocaleTabs>
+
+The two above examples can be combined to cover all cases.
+
+<LocaleTabs defaultSelected="fr">
+  <div slot="en">
+    <Code file="./messages/en/people.json" noPadding>
+
+```json
+{
+  "There are {count} people": {
+    "one": {
+      "f": "There is a woman",
+      "m": "There is a man",
+      "n": "There is a person"
+    },
+    "other": {
+      "f": "There are {count} women",
+      "m": "There are {count} men",
+      "n": "There are {count} people"
+    }
+  }
+}
+```
+
+    </Code>
+
+  </div>
+  <div slot="fr">
+    <Code file="./messages/fr/people.json" noPadding>
+
+```json
+{
+  "There are {count} people": {
+    "one": {
+      "f": "Il y a une femme",
+      "m": "Il y a un homme",
+      "n": "Il y a une personne"
+    },
+    "other": {
+      "f": "Il y a {count} femmes",
+      "m": "Il y a {count} hommes",
+      "n": "Il y a {count} personnes"
+    }
+  }
+}
+```
+
+    </Code>
+
+  </div>
+</LocaleTabs>
+
+### Declaration
+
+In order to have auto-completion while minimizing code duplication, the
+types and messages loader function should be defined separately.
+
+<Code file="./src/i18n/types.ts">
+
+```ts
+import type { Locale, ExpandedMessages } from '@foo-i18n/base';
+
+/**
+ * Define the message namespaces and available strings
+ */
+export type AppMessages = ExpandedMessages<{
+  people: typeof import('../../messages/en/people.json');
+  // ...
+}>;
+
+/**
+ * Instead of importing all locales, only allow a specific subset
+ */
+export type AppLocale = Extract<Locale, 'en' | 'fr'>;
+```
+
+</Code>
+
+<Highlight>
+  This solution works, however it is not optimal. Contributions welcome!
+</Highlight>
+
+### Loading messages
+
+It is recommended to group messages in namespaces, that is either per
+component, or per feature, etc. Likewise, messages should be part of
+the `tsconfig.json` inclusion in order to be analysed by TypeScript.
+
+<Code file="./src/i18n/messages.ts">
+
+```ts
+import type { AppLocale, AppMessages } from './types';
+
+/**
+ * Dynamically import mesages, this insures that no namespaces
+ * are overlooked, and that all imported files are, again,
+ * properly statically typed.
+ */
+export const loadMessages = async (locale: AppLocale) =>
+  ({
+    people: (await import(`../../messages/${locale}/people.json`))
+      .default as AppMessages['people'],
+  }) satisfies AppMessages;
+```
+
+</Code>
+
+## Translation
+
+When a messages loader is made available, the only remaining task is
+to create a translator, and calling the translation function. If
+messages are properly typed, then all arguments are statically evaluated
+and provided with auto-completion.
+
+<Code file="./src/index.ts">
+
+```ts
+import { loadMessages } from './i18n/messages.js';
+import { translate } from '@foo-i18n/t';
+import type { AppLocale } from './i18n/types.js';
+
+// choose the desired locale
+const locale: AppLocale = 'en';
+
+// load the messages for the specified locale
+const messages = await loadMessages(locale);
+// get the translator for the loaded messages
+const translator = translate(messages);
+// select the translate function for the specified namespace
+const t = translator('people');
+
+// get the translated string with required params
+const text = t('There are {count} people', {
+  count: 1,
+  plurality: 'one',
+});
+
+console.log(text);
+// "There is a person"
+```
+
+</Code>
+
+<Highlight>
+  Check [plurals](./api/plurals) more information about pluraity.
+</Highlight>

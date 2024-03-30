@@ -11,6 +11,11 @@ section[aria-label='content'] h1:not(:nth-of-type(1)) {
   margin-top: 32px;
 }
 
+section[aria-label='content'] h2,
+section[aria-label='content'] h3 {
+  margin-top: 32px;
+}
+
 section[aria-label='content'] h1,
 section[aria-label='content'] h2,
 section[aria-label='content'] h3,
@@ -57,10 +62,33 @@ section[aria-label='content'] p {
   padding: 4px 0px 8px 0px;
 }
 
+section[aria-label='content'] a {
+  text-decoration: underline;
+  color: #0ea5e9;
+}
+
+section[aria-label='content'] .tabs .tab:first-of-type {
+  position: relative;
+  z-index: 0;
+}
+
+section[aria-label='content'] .tabs .tab:first-of-type {
+  margin-left: 32px;
+}
+
+section[aria-label='content'] .tabs .tab:checked {
+  top: 1px;
+  z-index: 2;
+}
+
+section[aria-label='content'] .tabs .tab-content pre {
+  margin-top: 0;
+}
+
 section[aria-label='content'] pre {
   margin: 8px 0px;
   padding: 8px 12px;
-  border: 1px solid rgb(148, 163, 184);
+  border: 1px solid rgb(52 211 153);
   border-radius: 16px;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
   position: relative;
@@ -70,14 +98,19 @@ section[aria-label='content'] pre {
   cursor: text;
 }
 
+@supports (scrollbar-width: auto) {
+  section[aria-label='content'] pre {
+    scrollbar-width: var(--scrollbar-width) !important;
+  }
+}
+
 section[aria-label='content'] pre code {
   font-family: 'Kode Mono', monospace;
   font-weight: 500;
   font-style: normal;
-  z-index: 1;
 }
 
-section[aria-label='content'] pre code::before {
+section[aria-label='content'] .line-numbers pre code::before {
   content: ' ';
   position: absolute;
   top: 0;
@@ -87,16 +120,40 @@ section[aria-label='content'] pre code::before {
   background: rgba(0, 0, 0, 0.2);
   user-select: none;
   -moz-user-select: none;
+  z-index: 0;
 }
 
-section[aria-label='content'] pre code .line {
+section[aria-label='content'] .line-numbers pre code .line:not(:last-of-type),
+section[aria-label='content'] .line-numbers pre code .line:has(span) {
   counter-increment: line;
 }
-section[aria-label='content'] pre code .line::before {
+section[aria-label='content']
+  .line-numbers
+  pre
+  code
+  .line:not(:last-of-type)::before,
+section[aria-label='content'] .line-numbers pre code .line:has(span)::before {
   content: counter(line);
   display: inline-block;
-  width: 2em;
-  margin-right: 1em;
+  width: 1.6em;
+  margin-right: 1.2em;
   text-align: right;
   color: #888;
+}
+
+section[aria-label='content'] .file-name pre {
+  padding-top: 34px !important;
+}
+
+section[aria-label='content'] .file-name pre::before {
+  content: var(--file-name);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 4px 16px;
+  background-color: #1e293b;
+  color: #6ee7b7;
+  z-index: 1;
+  font-size: 80%;
 }

@@ -6,19 +6,19 @@ should not be distributed in a non-development environment
 as it depends on cldr-data to be installed as a dev-dependency.
 */
 
-import fs from "fs";
+import fs from 'fs';
 
-import prettier from "prettier";
+import prettier from 'prettier';
 
-import pluralData from "cldr-data/supplemental/plurals.json";
-import ordinalData from "cldr-data/supplemental/ordinals.json";
+import pluralData from 'cldr-data/supplemental/plurals.json';
+import ordinalData from 'cldr-data/supplemental/ordinals.json';
 
 type Locale = string;
-type PluralsType = "ordinal" | "cardinal";
+type PluralsType = 'ordinal' | 'cardinal';
 type Plurality = (typeof PLURALITY)[number];
 type PluralsTypeData =
-  | (typeof pluralData.supplemental)["plurals-type-cardinal"]
-  | (typeof ordinalData.supplemental)["plurals-type-ordinal"];
+  | (typeof pluralData.supplemental)['plurals-type-cardinal']
+  | (typeof ordinalData.supplemental)['plurals-type-ordinal'];
 type PluralFuncVars = Record<(typeof PARAMS)[number], string> & {
   [alias: string]: string;
 };
@@ -40,7 +40,7 @@ const MOD_ALIAS = /(\w) % (\d+)/g;
 const EXPR = /(\w\d*?) (!?=) ((?:\d+(\.\.\d+)?,?)+)/g;
 const EXPR_RANGE = /(\d+)\.\.(\d+)/;
 
-const PLURALITY = ["zero", "one", "two", "few", "many", "other"] as const;
+const PLURALITY = ['zero', 'one', 'two', 'few', 'many', 'other'] as const;
 
 /**
  * n = absolute value of p
@@ -50,7 +50,7 @@ const PLURALITY = ["zero", "one", "two", "few", "many", "other"] as const;
  * t = visible fractional digits in p, without trailing zeros.
  * w = NOT USED BY CLDR AT THE MOMENT
  */
-const PARAMS = ["n", "i", "v", "f", "t" /*, 'w'*/] as const;
+const PARAMS = ['n', 'i', 'v', 'f', 't' /*, 'w'*/] as const;
 
 // cache parsed expressions
 const exprCache: Record<string, ReturnType<typeof parseRule>> = {};
@@ -65,21 +65,21 @@ const defaultPluralFn = "() => 'other'" as const;
 /**
 Build all cardinal rules from CLDR data
 */
-scanPluralData(pluralData.supplemental["plurals-type-cardinal"], "cardinal");
+scanPluralData(pluralData.supplemental['plurals-type-cardinal'], 'cardinal');
 /**
 Build all ordinal rules from CLDR data
 */
-scanPluralData(ordinalData.supplemental["plurals-type-ordinal"], "ordinal");
+scanPluralData(ordinalData.supplemental['plurals-type-ordinal'], 'ordinal');
 
 // Write all rules
-fs.mkdirSync("./src/rules", { recursive: true });
+fs.mkdirSync('./src/rules', { recursive: true });
 
 const ruleFiles = Object.values(ruleFnDefs).map((rule) =>
   createRuleFileContent(rule)
 );
 
 // Write all plural rules in locale
-fs.mkdirSync("./src/locale", { recursive: true });
+fs.mkdirSync('./src/locale', { recursive: true });
 
 const pluralFiles = Object.entries(pluralFnDefs).map(([locale, plural]) =>
   createPluralFileContent(locale, plural)
@@ -91,10 +91,10 @@ Promise.all([...ruleFiles, ...pluralFiles, indexFile]).then(
   () => {
     console.log(`Generated ${ruleFiles.length} rules`);
     console.log(`Generated ${pluralFiles.length} plurals`);
-    console.log("Done!");
+    console.log('Done!');
   },
   (err) => {
-    console.error("ERR:", err);
+    console.error('ERR:', err);
   }
 );
 
@@ -104,15 +104,15 @@ async function createRuleFileContent(rule: RuleFunctionDef) {
   // TODO: remove (p:number) if function has no params
   const content = await prettier.format(
     [
-      "/**",
-      " * Rule auto-generated from cldr-data",
-      " */",
+      '/**',
+      ' * Rule auto-generated from cldr-data',
+      ' */',
       "import type { Plurality } from '@foo-i18n/base';",
-      "",
-      `export default (${rule.hasInput ? "p:number" : ""}):Plurality => { ${rule.fn} };`,
-    ].join("\n"),
+      '',
+      `export default (${rule.hasInput ? 'p:number' : ''}):Plurality => { ${rule.fn} };`,
+    ].join('\n'),
     {
-      parser: "typescript",
+      parser: 'typescript',
     }
   );
 
@@ -125,49 +125,61 @@ async function createPluralFileContent(
 ) {
   const content = await prettier.format(
     [
-      "/**",
+      '/**',
       ` * Locale: ${locale}`,
-      " * Plural auto-generated from cldr-data",
-      " */",
+      ' * Plural auto-generated from cldr-data',
+      ' */',
       plural.cardinal
         ? `import cardinal from '../rules/${plural.cardinal}';`
         : null,
       plural.ordinal
         ? `import ordinal from '../rules/${plural.ordinal}';`
         : null,
-      "import type { PluralRule } from '../types';",
-      "",
-      "const pluralRule: PluralRule = {",
-      `  ordinal${plural.ordinal ? "" : `: ${defaultPluralFn}`},`,
-      `  cardinal${plural.cardinal ? "" : `: ${defaultPluralFn}`}`,
-      "};",
-      "",
-      "export default pluralRule;",
+      "import type { PluralRule } from '@foo-i18n/base';",
+      '',
+      'const pluralRule: PluralRule = {',
+      `  ordinal${plural.ordinal ? '' : `: ${defaultPluralFn}`},`,
+      `  cardinal${plural.cardinal ? '' : `: ${defaultPluralFn}`}`,
+      '};',
+      '',
+      'export default pluralRule;',
     ]
       .filter((line) => line !== null)
-      .join("\n"),
+      .join('\n'),
     {
-      parser: "typescript",
+      parser: 'typescript',
     }
   );
 
   await fs.writeFileSync(`./src/locale/${locale}.ts`, content);
 }
 
+function cleanLocale(locale: string) {
+  return locale.replaceAll('-', '');
+}
+
 async function createIndexFileContent() {
+  const locales = Object.keys(pluralFnDefs);
+  const importLines = locales.map(
+    (locale) => `import _${cleanLocale(locale)} from './locale/${locale}';`
+  );
+  const exportEntries = locales
+    .map((locale) => `${cleanLocale(locale)}:_${cleanLocale(locale)}`)
+    .join(', ');
+
   const content = await prettier.format(
-    Object.keys(pluralFnDefs)
-      .map((locale) => `export { default as ${locale.replaceAll('-', '')}} from './locale/${locale}';`)
-      .concat([
-        "export * from './types';"
-      ])
-      .join("\n"),
+    [
+      ...importLines,
+      `const plurals = { ${exportEntries} };`,
+      'export { plurals };',
+      'export default plurals;',
+    ].join('\n'),
     {
-      parser: "typescript",
+      parser: 'typescript',
     }
   );
 
-  fs.writeFileSync("./src/index.ts", content);
+  fs.writeFileSync('./src/index.ts', content);
 }
 
 function scanPluralData(pluralData: PluralsTypeData, type: PluralsType) {
@@ -177,8 +189,8 @@ function scanPluralData(pluralData: PluralsTypeData, type: PluralsType) {
     let ruleHasInput = false;
 
     Object.entries(rawRules).forEach(([key, rawExpr]) => {
-      const plurality = key.substring(key.lastIndexOf("-") + 1) as Plurality;
-      const expr = rawExpr.substring(0, rawExpr.indexOf("@")).trim();
+      const plurality = key.substring(key.lastIndexOf('-') + 1) as Plurality;
+      const expr = rawExpr.substring(0, rawExpr.indexOf('@')).trim();
 
       if (!exprCache[expr]) {
         exprCache[expr] = parseRule(expr); // prevent recomputing this...
@@ -201,7 +213,7 @@ function scanPluralData(pluralData: PluralsTypeData, type: PluralsType) {
           .filter(([p]) => !PARAMS.includes(p as any))
           .map(([p, value]) => `${p} = ${value}`)
       )
-      .join(", ");
+      .join(', ');
 
     const fnExpr = PLURALITY.map((plurality) =>
       plurality in rules
@@ -211,11 +223,11 @@ function scanPluralData(pluralData: PluralsTypeData, type: PluralsType) {
         : null
     )
       .filter(Boolean)
-      .join("");
+      .join('');
 
     if (!ruleFnDefs[fnExpr]) {
       const name = `rule${Object.keys(ruleFnDefs).length + 1}`;
-      const fn = `${fnParams ? `let ${fnParams}; ` : ""}return ${fnExpr};`;
+      const fn = `${fnParams ? `let ${fnParams}; ` : ''}return ${fnExpr};`;
 
       // TODO: add whether we require function (p:number) arg
       ruleFnDefs[fnExpr] = { hasInput: ruleHasInput, name, fn };
@@ -235,15 +247,15 @@ function parseRule(expr: string) {
   const vars: Partial<PluralFuncVars> = {};
 
   const parsed = expr
-    .replace("i", () => {
+    .replace('i', () => {
       requireN = true;
-      vars.i = "Math.floor(n)||0";
-      return "i";
+      vars.i = 'Math.floor(n)||0';
+      return 'i';
     })
-    .replace("v", () => {
+    .replace('v', () => {
       requireP = true;
       vars.v = '((p+"").split(".")[1]||"").length';
-      return "v";
+      return 'v';
     })
     /**
      --- NOT USED BY CLDR AT THE MOMENT ---
@@ -252,20 +264,20 @@ function parseRule(expr: string) {
       return 'w';
     })
     */
-    .replace("f", () => {
+    .replace('f', () => {
       requireP = true;
       vars.f = 'Math.floor(Number((p+"").split(".")[1]))||0';
-      return "f";
+      return 'f';
     })
-    .replace("t", () => {
+    .replace('t', () => {
       requireN = true;
       vars.t = 'Math.floor(Number((n+"").split(".")[1]))||0';
-      return "t";
+      return 't';
     })
     .replace(MOD_ALIAS, (match: string, v: string, mod: string) => {
       var alias = v + mod;
 
-      if (v === "n") {
+      if (v === 'n') {
         requireN = true;
       }
 
@@ -277,7 +289,7 @@ function parseRule(expr: string) {
     })
     .replace(EXPR, (_match: string, v: string, op: string, n: string) => {
       return n
-        .split(",")
+        .split(',')
         .map((r: string) => {
           const m = r.match(EXPR_RANGE);
           //let buffer;
@@ -289,31 +301,31 @@ function parseRule(expr: string) {
             //return buffer.join(' || ');
 
             return (
-              (op === "=" ? "" : "!") +
-              "(" +
+              (op === '=' ? '' : '!') +
+              '(' +
               v +
-              " >= " +
+              ' >= ' +
               m[1] +
-              " && " +
+              ' && ' +
               v +
-              " <= " +
+              ' <= ' +
               m[2] +
-              ")"
+              ')'
             );
           } else {
-            return v + " " + op + " " + r;
+            return v + ' ' + op + ' ' + r;
           }
         })
-        .join(op === "=" ? " || " : " && ");
+        .join(op === '=' ? ' || ' : ' && ');
     })
-    .replace(OP_AND, " && ")
-    .replace(OP_OR, " || ")
-    .replace(OP_EQUAL, " === ")
-    .replace(OP_NOT_EQUAL, " !== ");
+    .replace(OP_AND, ' && ')
+    .replace(OP_OR, ' || ')
+    .replace(OP_EQUAL, ' === ')
+    .replace(OP_NOT_EQUAL, ' !== ');
 
-  if (requireN || expr.indexOf("n") >= 0) {
+  if (requireN || expr.indexOf('n') >= 0) {
     requireP = true;
-    vars.n = "Math.abs(p)||0";
+    vars.n = 'Math.abs(p)||0';
   }
 
   return { hasInput: requireP, vars, parsed };

@@ -20,24 +20,24 @@ const docsByPath = documents.reduce((map, doc) => {
 
 <ul>
   <li>
-    <SidebarCategory>Getting Started</SidebarCategory>
+    <SidebarCategory>Getting started</SidebarCategory>
     <ul>
       <li>
-        <SidebarLink doc={docsByPath.get(getUrl('/docs/about'))} />
+        <SidebarLink doc={docsByPath.get(getUrl('/docs/about'))}>
+          About
+        </SidebarLink>
+      </li>
+      <li>
+        <SidebarLink doc={docsByPath.get(getUrl('/docs/fundamentals'))} />
       </li>
     </ul>
   </li>
   <li>
-    <SidebarCategory>React Usage</SidebarCategory>
+    <SidebarCategory>Integration</SidebarCategory>
     <ul>
       <li>
-        <SidebarLink doc={docsByPath.get(getUrl('/docs/react/installation'))}>
-          Installation
-        </SidebarLink>
-      </li>
-      <li>
         <SidebarLink doc={docsByPath.get(getUrl('/docs/react/usage'))}
-          >Usage</SidebarLink
+          >React</SidebarLink
         >
       </li>
     </ul>

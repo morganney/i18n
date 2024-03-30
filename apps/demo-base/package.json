@@ -1,0 +1,30 @@
+{
+  "name": "@foo-i18n/base",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm clean && tsc -p tsconfig.build.json",
+    "clean": "rimraf build coverage",
+    "dev": "tsx ./src/index.ts",
+    "lint": "eslint . --max-warnings 0",
+    "test": "jest",
+    "reset": "rimraf .turbo node_modules"
+  },
+  "dependencies": {
+    "@foo-i18n/base": "workspace:*",
+    "@foo-i18n/plurals": "workspace:*",
+    "@foo-i18n/t": "workspace:*"
+  },
+  "devDependencies": {
+    "@foo-i18n/eslint-config": "workspace:*",
+    "@foo-i18n/typescript-config": "workspace:*",
+    "@jest/types": "29.6.3",
+    "@turbo/gen": "^1.12.4",
+    "@types/eslint": "^8.56.5",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.24",
+    "eslint": "^8.57.0",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
+  }
+}

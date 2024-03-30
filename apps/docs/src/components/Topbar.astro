@@ -71,15 +71,22 @@ import { getUrl } from '../utils/url';
           </div>
         </div>
       </div>
-      <div
-        class="drawer-side lg:hidden backdrop-blur-lg bg-white/95 dark:bg-black/10"
-      >
+      <div class="drawer-side lg:hidden">
         <label
           for="mobileDrawer"
           aria-label="close sidebar"
-          class="drawer-overlay"></label>
-        <nav class="pl-10 pr-24 py-10 w-auto min-h-full bg-slate-800">
-          <slot name="sidebar" />
+          class="drawer-overlay bg-white/95 dark:bg-black/10"></label>
+        <nav
+          class="pl-10 pr-24 w-auto min-h-full backdrop-blur-3xl bg-slate-800/95 shadow-lg shadow-black"
+        >
+          <h1
+            class="flex-1 font-['Offside',sans-serif] py-4 my-0 leading-5 text-xl font-bold"
+          >
+            {APP_NAME}
+          </h1>
+          <div class="pt-4 pb-10">
+            <slot name="sidebar" />
+          </div>
         </nav>
       </div>
     </div>

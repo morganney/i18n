@@ -4,7 +4,16 @@ import daisyui from 'daisyui';
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        available: [
+          '100%',
+          '-moz-available' /* WebKit-based browsers will ignore this. */,
+          '-webkit-fill-available' /* Mozilla-based browsers will ignore this. */,
+          'stretch',
+        ],
+      },
+    },
   },
   plugins: [daisyui],
   daisyui: {

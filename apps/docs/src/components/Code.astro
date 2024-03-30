@@ -1,0 +1,80 @@
+---
+import clsx from 'clsx';
+
+export type Props = {
+  file?: string;
+  showLineNumbers?: boolean;
+  noPadding?: boolean;
+};
+
+const { file, showLineNumbers = true, noPadding } = Astro.props;
+---
+
+<style>
+  .scrollbar-hidden {
+    --scrollbar-width: none;
+    --scrollbar-width-legacy: 0;
+  }
+</style>
+
+<script>
+  class CodeElement extends HTMLElement {
+    private prePadding = '18px';
+
+    constructor() {
+      super();
+
+      this.addPrePadding();
+
+      this.addEventListener('mouseenter', () => {
+        this.removePrePadding();
+        this.classList.remove('scrollbar-hidden');
+      });
+      this.addEventListener('mouseleave', () => {
+        this.addPrePadding();
+        this.classList.add('scrollbar-hidden');
+      });
+    }
+
+    isPreOverflow(pre: HTMLPreElement) {
+      return pre.scrollWidth > pre.clientWidth;
+    }
+
+    addPrePadding() {
+      this.childNodes.forEach((node) => {
+        if (node.nodeName === 'PRE') {
+          const pre = node as HTMLPreElement;
+
+          if (this.isPreOverflow(pre)) {
+            pre.style.paddingBottom = this.prePadding;
+          }
+        }
+      });
+    }
+
+    removePrePadding() {
+      this.childNodes.forEach((node) => {
+        if (node.nodeName === 'PRE') {
+          (node as HTMLPreElement).style.paddingBottom = '';
+        }
+      });
+    }
+  }
+
+  customElements.define('code-element', CodeElement);
+</script>
+
+<code-element
+  class={clsx('scrollbar-hidden', {
+    'file-name': !!file,
+    'line-numbers': showLineNumbers,
+    'my-4': !noPadding,
+  })}
+  style={file
+    ? {
+        '--file-name': `'${file}'`,
+      }
+    : undefined}
+>
+  <slot />
+</code-element>

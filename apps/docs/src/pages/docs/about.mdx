@@ -5,6 +5,8 @@ description: 'About foo i18n'
 breadcrumbs: ['Getting started']
 ---
 
+import Code from '../../components/Code.astro';
+
 # About
 
 Type-safe translation strings for your JavaScript and TypeScript projects.
@@ -26,8 +28,9 @@ indeed!
 
 Consider this JSON message file:
 
+<Code file="./messages/fr.json">
+
 ```json
-// ./messages/fr.json
 {
   "authentication": {
     "Username": "Nom d'utilisateur",
@@ -37,8 +40,12 @@ Consider this JSON message file:
 }
 ```
 
+</Code>
+
 The following translator `t` will provide auto-completion for all available
 namespaces, and all strings withing the selected namespace:
+
+<Code file="./src/index.ts">
 
 ```ts
 import { translate } from '@foo-i18n/t';
@@ -50,6 +57,8 @@ const t = translator('authentication');
 console.log(t('Username'));
 // "Nom d'utilisateur"
 ```
+
+</Code>
 
 Pretty normal looking, except that all arguments are provided through
 auto-completion. Any misspelling or missing translation strings will
