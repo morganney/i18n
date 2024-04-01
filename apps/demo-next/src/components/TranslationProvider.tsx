@@ -1,6 +1,6 @@
 "use client";
 import TranslationProvider from "@foo-i18n/react/TranslationProvider";
-import plurals from "@foo-i18n/plurals";
+import { appPlurals } from "@/i18n/plurals";
 import type { AppLocale, AppMessages } from "@/i18n/types";
 
 export type AppTranslationProviderProps = {
@@ -14,7 +14,7 @@ const AppTranslationProvider = ({
   messages,
   children,
 }: AppTranslationProviderProps) => {
-  const plural = plurals[locale];
+  const plural = appPlurals[locale];
 
   return (
     <TranslationProvider locale={locale} messages={messages} plural={plural}>

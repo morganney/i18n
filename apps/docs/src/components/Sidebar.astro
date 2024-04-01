@@ -46,8 +46,13 @@ const docsByPath = documents.reduce((map, doc) => {
     <SidebarCategory>API</SidebarCategory>
     <ul>
       <li>
-        <SidebarLink doc={docsByPath.get(getUrl('/docs/api/translator'))}
-          >Translator</SidebarLink
+        <SidebarLink doc={docsByPath.get(getUrl('/docs/api/format'))}
+          >Format</SidebarLink
+        >
+      </li>
+      <li>
+        <SidebarLink doc={docsByPath.get(getUrl('/docs/api/translate'))}
+          >Translate</SidebarLink
         >
       </li>
       <li>

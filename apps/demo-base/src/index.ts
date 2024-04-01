@@ -2,6 +2,7 @@ import { genders } from '@foo-i18n/base';
 import { translate } from '@foo-i18n/t';
 import { loadMessages } from './i18n/messages.js';
 import plurals from '@foo-i18n/plurals';
+import { formatExt } from './i18n/format-ext.js';
 import type { AppLocale } from './i18n/types.js';
 
 const count_values = [0, 1, 10];
@@ -35,6 +36,8 @@ const bootstrap = async () => {
       }
     }
   }
+
+  console.log(formatExt('Hello {name}', { name: 'John', indent: 4 }));
 };
 
 bootstrap();

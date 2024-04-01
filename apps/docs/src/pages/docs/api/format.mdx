@@ -5,6 +5,95 @@ description: 'Format API'
 breadcrumbs: ['API']
 ---
 
+import Code from '../../../components/Code.astro';
+import Highlight from '../../../components/Highlight.astro';
+import Link from '../../../components/Link.astro';
+import { getUrl } from '../../../utils/url';
+
 # Format API
 
-_todo_
+## Package
+
+```
+@foo-i18n/t
+```
+
+The `format` function simply takes an arbitrary string and
+interpolates it if necessary. If placeholders are found
+within the string, and values are either missing or misspelled,
+then TypeScript will provide useful debugging warnings, however
+the call will not fail.
+
+## Declarations
+
+<Code>
+
+```ts
+function format(text: string, values?: unknown): string;
+```
+
+</Code>
+
+## Usage
+
+<Code>
+
+```tsx
+import { format } from '@foo-i18n/t';
+
+console.log(format('{count} messages', { count: 10 }));
+// "10 messages"
+
+console.log(format('Hello {name}')); // TS warning
+// "Hello ?name"
+```
+
+</Code>
+
+## Extensions
+
+The `format` function allow features to be added by extending it's
+type declaration. For example, the <Link href={getUrl("/docs/api/translate")}>`translate`</Link>
+does just that, by adding genders and plurals, for example.
+
+<Code file='./src/i18n/format-ext.ts'>
+
+```ts
+import { format, type FormatText } from '@foo-i18n/t';
+
+export type FormatString = 'Hello {name}' | 'Language : {lang}';
+
+export type FormatValueOptions = {
+  indent?: number;
+};
+
+// Could either be:
+//   FormatText<string, FormatValueOptions>
+//   FormatText<FormatString>
+//   FormatText<FormatString, FormatValueOptions>
+type FormatExt = FormatText<FormatString, FormatValueOptions>;
+
+export const formatExt: FormatExt = (text, ...[values]) => {
+  const margin = values?.indent ? ' '.repeat(values?.indent) : '';
+
+  return margin + format(text, values as any);
+};
+```
+
+</Code>
+
+<Code file="./src/index.ts">
+
+```ts
+import { formatExt } from './i18n/format-ext.js';
+
+console.log(
+  formatExt('Hello {name}', {
+    name: 'John',
+    indent: 4,
+  })
+);
+// "    Hello John"
+```
+
+</Code>

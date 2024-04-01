@@ -161,23 +161,16 @@ function cleanLocale(locale: string) {
 async function createIndexFileContent() {
   const locales = Object.keys(pluralFnDefs);
   const importLines = locales.map(
-    (locale) => `import _${cleanLocale(locale)} from './locale/${locale}';`
+    (locale) =>
+      `export { default as ${cleanLocale(locale)} } from './locale/${locale}';`
   );
-  const exportEntries = locales
-    .map((locale) => `${cleanLocale(locale)}:_${cleanLocale(locale)}`)
-    .join(', ');
+  // const exportEntries = locales
+  //   .map((locale) => `${cleanLocale(locale)}:_${cleanLocale(locale)}`)
+  //   .join(', ');
 
-  const content = await prettier.format(
-    [
-      ...importLines,
-      `const plurals = { ${exportEntries} };`,
-      'export { plurals };',
-      'export default plurals;',
-    ].join('\n'),
-    {
-      parser: 'typescript',
-    }
-  );
+  const content = await prettier.format(importLines.join('\n'), {
+    parser: 'typescript',
+  });
 
   fs.writeFileSync('./src/index.ts', content);
 }
