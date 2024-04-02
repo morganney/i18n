@@ -2,8 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "ES5",
-    "outDir": "build",
-    "declaration": true
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "outDir": "build/cjs",
+    "declarationMap": false,
+    "declaration": false
   },
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts", "generate.ts"]
 }

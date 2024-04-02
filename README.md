@@ -2,7 +2,7 @@
 
 Type-safe localisation.
 
-Read the documentation for more information. _(Coming soon!)_
+Read the [documentation](https://yanickrochon.github.io/i18n/) for more information.
 
 ## Development
 

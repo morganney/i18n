@@ -104,10 +104,16 @@ section[aria-label='content'] pre {
   }
 }
 
-section[aria-label='content'] pre code {
+section[aria-label='content'] code {
   font-family: 'Kode Mono', monospace;
   font-weight: 500;
   font-style: normal;
+}
+
+section[aria-label='content'] :not(pre) > code {
+  color: #cbd5e1;
+  background-color: #334155;
+  padding: 0 4px;
 }
 
 section[aria-label='content'] .line-numbers pre code::before {

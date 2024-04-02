@@ -11,224 +11,1074 @@
     "locale",
     "plural"
   ],
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "main": "./build/cjs/index.js",
+  "types": "./build/esm/index.d.ts",
   "exports": {
-    ".": "./build/index.js",
-    "./af": "./build/locale/af",
-    "./ak": "./build/locale/ak",
-    "./am": "./build/locale/am",
-    "./an": "./build/locale/an",
-    "./ar": "./build/locale/ar",
-    "./ars": "./build/locale/ars",
-    "./as": "./build/locale/as",
-    "./asa": "./build/locale/asa",
-    "./ast": "./build/locale/ast",
-    "./az": "./build/locale/az",
-    "./be": "./build/locale/be",
-    "./bem": "./build/locale/bem",
-    "./bez": "./build/locale/bez",
-    "./bg": "./build/locale/bg",
-    "./bho": "./build/locale/bho",
-    "./bm": "./build/locale/bm",
-    "./bn": "./build/locale/bn",
-    "./bo": "./build/locale/bo",
-    "./br": "./build/locale/br",
-    "./brx": "./build/locale/brx",
-    "./bs": "./build/locale/bs",
-    "./ca": "./build/locale/ca",
-    "./ce": "./build/locale/ce",
-    "./ceb": "./build/locale/ceb",
-    "./cgg": "./build/locale/cgg",
-    "./chr": "./build/locale/chr",
-    "./ckb": "./build/locale/ckb",
-    "./cs": "./build/locale/cs",
-    "./cy": "./build/locale/cy",
-    "./da": "./build/locale/da",
-    "./de": "./build/locale/de",
-    "./dsb": "./build/locale/dsb",
-    "./dv": "./build/locale/dv",
-    "./dz": "./build/locale/dz",
-    "./ee": "./build/locale/ee",
-    "./el": "./build/locale/el",
-    "./en": "./build/locale/en",
-    "./eo": "./build/locale/eo",
-    "./es": "./build/locale/es",
-    "./et": "./build/locale/et",
-    "./eu": "./build/locale/eu",
-    "./fa": "./build/locale/fa",
-    "./ff": "./build/locale/ff",
-    "./fi": "./build/locale/fi",
-    "./fil": "./build/locale/fil",
-    "./fo": "./build/locale/fo",
-    "./fr": "./build/locale/fr",
-    "./fur": "./build/locale/fur",
-    "./fy": "./build/locale/fy",
-    "./ga": "./build/locale/ga",
-    "./gd": "./build/locale/gd",
-    "./gl": "./build/locale/gl",
-    "./gsw": "./build/locale/gsw",
-    "./gu": "./build/locale/gu",
-    "./guw": "./build/locale/guw",
-    "./gv": "./build/locale/gv",
-    "./ha": "./build/locale/ha",
-    "./haw": "./build/locale/haw",
-    "./he": "./build/locale/he",
-    "./hi": "./build/locale/hi",
-    "./hr": "./build/locale/hr",
-    "./hsb": "./build/locale/hsb",
-    "./hu": "./build/locale/hu",
-    "./hy": "./build/locale/hy",
-    "./ia": "./build/locale/ia",
-    "./id": "./build/locale/id",
-    "./ig": "./build/locale/ig",
-    "./ii": "./build/locale/ii",
-    "./in": "./build/locale/in",
-    "./io": "./build/locale/io",
-    "./is": "./build/locale/is",
-    "./it": "./build/locale/it",
-    "./iu": "./build/locale/iu",
-    "./iw": "./build/locale/iw",
-    "./ja": "./build/locale/ja",
-    "./jbo": "./build/locale/jbo",
-    "./jgo": "./build/locale/jgo",
-    "./ji": "./build/locale/ji",
-    "./jmc": "./build/locale/jmc",
-    "./jv": "./build/locale/jv",
-    "./jw": "./build/locale/jw",
-    "./ka": "./build/locale/ka",
-    "./kab": "./build/locale/kab",
-    "./kaj": "./build/locale/kaj",
-    "./kcg": "./build/locale/kcg",
-    "./kde": "./build/locale/kde",
-    "./kea": "./build/locale/kea",
-    "./kk": "./build/locale/kk",
-    "./kkj": "./build/locale/kkj",
-    "./kl": "./build/locale/kl",
-    "./km": "./build/locale/km",
-    "./kn": "./build/locale/kn",
-    "./ko": "./build/locale/ko",
-    "./ks": "./build/locale/ks",
-    "./ksb": "./build/locale/ksb",
-    "./ksh": "./build/locale/ksh",
-    "./ku": "./build/locale/ku",
-    "./kw": "./build/locale/kw",
-    "./ky": "./build/locale/ky",
-    "./lag": "./build/locale/lag",
-    "./lb": "./build/locale/lb",
-    "./lg": "./build/locale/lg",
-    "./lkt": "./build/locale/lkt",
-    "./ln": "./build/locale/ln",
-    "./lo": "./build/locale/lo",
-    "./lt": "./build/locale/lt",
-    "./lv": "./build/locale/lv",
-    "./mas": "./build/locale/mas",
-    "./mg": "./build/locale/mg",
-    "./mgo": "./build/locale/mgo",
-    "./mk": "./build/locale/mk",
-    "./ml": "./build/locale/ml",
-    "./mn": "./build/locale/mn",
-    "./mo": "./build/locale/mo",
-    "./mr": "./build/locale/mr",
-    "./ms": "./build/locale/ms",
-    "./mt": "./build/locale/mt",
-    "./my": "./build/locale/my",
-    "./nah": "./build/locale/nah",
-    "./naq": "./build/locale/naq",
-    "./nb": "./build/locale/nb",
-    "./nd": "./build/locale/nd",
-    "./ne": "./build/locale/ne",
-    "./nl": "./build/locale/nl",
-    "./nn": "./build/locale/nn",
-    "./nnh": "./build/locale/nnh",
-    "./no": "./build/locale/no",
-    "./nqo": "./build/locale/nqo",
-    "./nr": "./build/locale/nr",
-    "./nso": "./build/locale/nso",
-    "./ny": "./build/locale/ny",
-    "./nyn": "./build/locale/nyn",
-    "./om": "./build/locale/om",
-    "./or": "./build/locale/or",
-    "./os": "./build/locale/os",
-    "./osa": "./build/locale/osa",
-    "./pa": "./build/locale/pa",
-    "./pap": "./build/locale/pap",
-    "./pl": "./build/locale/pl",
-    "./prg": "./build/locale/prg",
-    "./ps": "./build/locale/ps",
-    "./pt": "./build/locale/pt",
-    "./ptPT": "./build/locale/pt-PT",
-    "./rm": "./build/locale/rm",
-    "./ro": "./build/locale/ro",
-    "./rof": "./build/locale/rof",
-    "./root": "./build/locale/root",
-    "./ru": "./build/locale/ru",
-    "./rwk": "./build/locale/rwk",
-    "./sah": "./build/locale/sah",
-    "./saq": "./build/locale/saq",
-    "./sc": "./build/locale/sc",
-    "./scn": "./build/locale/scn",
-    "./sd": "./build/locale/sd",
-    "./sdh": "./build/locale/sdh",
-    "./se": "./build/locale/se",
-    "./seh": "./build/locale/seh",
-    "./ses": "./build/locale/ses",
-    "./sg": "./build/locale/sg",
-    "./sh": "./build/locale/sh",
-    "./shi": "./build/locale/shi",
-    "./si": "./build/locale/si",
-    "./sk": "./build/locale/sk",
-    "./sl": "./build/locale/sl",
-    "./sma": "./build/locale/sma",
-    "./smi": "./build/locale/smi",
-    "./smj": "./build/locale/smj",
-    "./smn": "./build/locale/smn",
-    "./sms": "./build/locale/sms",
-    "./sn": "./build/locale/sn",
-    "./so": "./build/locale/so",
-    "./sq": "./build/locale/sq",
-    "./sr": "./build/locale/sr",
-    "./ss": "./build/locale/ss",
-    "./ssy": "./build/locale/ssy",
-    "./st": "./build/locale/st",
-    "./su": "./build/locale/su",
-    "./sv": "./build/locale/sv",
-    "./sw": "./build/locale/sw",
-    "./syr": "./build/locale/syr",
-    "./ta": "./build/locale/ta",
-    "./te": "./build/locale/te",
-    "./teo": "./build/locale/teo",
-    "./th": "./build/locale/th",
-    "./ti": "./build/locale/ti",
-    "./tig": "./build/locale/tig",
-    "./tk": "./build/locale/tk",
-    "./tl": "./build/locale/tl",
-    "./tn": "./build/locale/tn",
-    "./to": "./build/locale/to",
-    "./tr": "./build/locale/tr",
-    "./ts": "./build/locale/ts",
-    "./tzm": "./build/locale/tzm",
-    "./ug": "./build/locale/ug",
-    "./uk": "./build/locale/uk",
-    "./ur": "./build/locale/ur",
-    "./uz": "./build/locale/uz",
-    "./ve": "./build/locale/ve",
-    "./vi": "./build/locale/vi",
-    "./vo": "./build/locale/vo",
-    "./vun": "./build/locale/vun",
-    "./wa": "./build/locale/wa",
-    "./wae": "./build/locale/wae",
-    "./wo": "./build/locale/wo",
-    "./xh": "./build/locale/xh",
-    "./xog": "./build/locale/xog",
-    "./yi": "./build/locale/yi",
-    "./yo": "./build/locale/yo",
-    "./yue": "./build/locale/yue",
-    "./zh": "./build/locale/zh",
-    "./zu": "./build/locale/zu"
+    ".": {
+      "default": "./build/esm/index.js",
+      "types": "./build/esm/index.d.ts",
+      "require": "./build/cjs/index.js"
+    },
+    "./af": {
+      "default": "./build/esm/locale/af.js",
+      "types": "./build/esm/locale/af.d.ts",
+      "require": "./build/cjs/locale/af.js"
+    },
+    "./ak": {
+      "default": "./build/esm/locale/ak.js",
+      "types": "./build/esm/locale/ak.d.ts",
+      "require": "./build/cjs/locale/ak.js"
+    },
+    "./am": {
+      "default": "./build/esm/locale/am.js",
+      "types": "./build/esm/locale/am.d.ts",
+      "require": "./build/cjs/locale/am.js"
+    },
+    "./an": {
+      "default": "./build/esm/locale/an.js",
+      "types": "./build/esm/locale/an.d.ts",
+      "require": "./build/cjs/locale/an.js"
+    },
+    "./ar": {
+      "default": "./build/esm/locale/ar.js",
+      "types": "./build/esm/locale/ar.d.ts",
+      "require": "./build/cjs/locale/ar.js"
+    },
+    "./ars": {
+      "default": "./build/esm/locale/ars.js",
+      "types": "./build/esm/locale/ars.d.ts",
+      "require": "./build/cjs/locale/ars.js"
+    },
+    "./as": {
+      "default": "./build/esm/locale/as.js",
+      "types": "./build/esm/locale/as.d.ts",
+      "require": "./build/cjs/locale/as.js"
+    },
+    "./asa": {
+      "default": "./build/esm/locale/asa.js",
+      "types": "./build/esm/locale/asa.d.ts",
+      "require": "./build/cjs/locale/asa.js"
+    },
+    "./ast": {
+      "default": "./build/esm/locale/ast.js",
+      "types": "./build/esm/locale/ast.d.ts",
+      "require": "./build/cjs/locale/ast.js"
+    },
+    "./az": {
+      "default": "./build/esm/locale/az.js",
+      "types": "./build/esm/locale/az.d.ts",
+      "require": "./build/cjs/locale/az.js"
+    },
+    "./be": {
+      "default": "./build/esm/locale/be.js",
+      "types": "./build/esm/locale/be.d.ts",
+      "require": "./build/cjs/locale/be.js"
+    },
+    "./bem": {
+      "default": "./build/esm/locale/bem.js",
+      "types": "./build/esm/locale/bem.d.ts",
+      "require": "./build/cjs/locale/bem.js"
+    },
+    "./bez": {
+      "default": "./build/esm/locale/bez.js",
+      "types": "./build/esm/locale/bez.d.ts",
+      "require": "./build/cjs/locale/bez.js"
+    },
+    "./bg": {
+      "default": "./build/esm/locale/bg.js",
+      "types": "./build/esm/locale/bg.d.ts",
+      "require": "./build/cjs/locale/bg.js"
+    },
+    "./bho": {
+      "default": "./build/esm/locale/bho.js",
+      "types": "./build/esm/locale/bho.d.ts",
+      "require": "./build/cjs/locale/bho.js"
+    },
+    "./bm": {
+      "default": "./build/esm/locale/bm.js",
+      "types": "./build/esm/locale/bm.d.ts",
+      "require": "./build/cjs/locale/bm.js"
+    },
+    "./bn": {
+      "default": "./build/esm/locale/bn.js",
+      "types": "./build/esm/locale/bn.d.ts",
+      "require": "./build/cjs/locale/bn.js"
+    },
+    "./bo": {
+      "default": "./build/esm/locale/bo.js",
+      "types": "./build/esm/locale/bo.d.ts",
+      "require": "./build/cjs/locale/bo.js"
+    },
+    "./br": {
+      "default": "./build/esm/locale/br.js",
+      "types": "./build/esm/locale/br.d.ts",
+      "require": "./build/cjs/locale/br.js"
+    },
+    "./brx": {
+      "default": "./build/esm/locale/brx.js",
+      "types": "./build/esm/locale/brx.d.ts",
+      "require": "./build/cjs/locale/brx.js"
+    },
+    "./bs": {
+      "default": "./build/esm/locale/bs.js",
+      "types": "./build/esm/locale/bs.d.ts",
+      "require": "./build/cjs/locale/bs.js"
+    },
+    "./ca": {
+      "default": "./build/esm/locale/ca.js",
+      "types": "./build/esm/locale/ca.d.ts",
+      "require": "./build/cjs/locale/ca.js"
+    },
+    "./ce": {
+      "default": "./build/esm/locale/ce.js",
+      "types": "./build/esm/locale/ce.d.ts",
+      "require": "./build/cjs/locale/ce.js"
+    },
+    "./ceb": {
+      "default": "./build/esm/locale/ceb.js",
+      "types": "./build/esm/locale/ceb.d.ts",
+      "require": "./build/cjs/locale/ceb.js"
+    },
+    "./cgg": {
+      "default": "./build/esm/locale/cgg.js",
+      "types": "./build/esm/locale/cgg.d.ts",
+      "require": "./build/cjs/locale/cgg.js"
+    },
+    "./chr": {
+      "default": "./build/esm/locale/chr.js",
+      "types": "./build/esm/locale/chr.d.ts",
+      "require": "./build/cjs/locale/chr.js"
+    },
+    "./ckb": {
+      "default": "./build/esm/locale/ckb.js",
+      "types": "./build/esm/locale/ckb.d.ts",
+      "require": "./build/cjs/locale/ckb.js"
+    },
+    "./cs": {
+      "default": "./build/esm/locale/cs.js",
+      "types": "./build/esm/locale/cs.d.ts",
+      "require": "./build/cjs/locale/cs.js"
+    },
+    "./cy": {
+      "default": "./build/esm/locale/cy.js",
+      "types": "./build/esm/locale/cy.d.ts",
+      "require": "./build/cjs/locale/cy.js"
+    },
+    "./da": {
+      "default": "./build/esm/locale/da.js",
+      "types": "./build/esm/locale/da.d.ts",
+      "require": "./build/cjs/locale/da.js"
+    },
+    "./de": {
+      "default": "./build/esm/locale/de.js",
+      "types": "./build/esm/locale/de.d.ts",
+      "require": "./build/cjs/locale/de.js"
+    },
+    "./dsb": {
+      "default": "./build/esm/locale/dsb.js",
+      "types": "./build/esm/locale/dsb.d.ts",
+      "require": "./build/cjs/locale/dsb.js"
+    },
+    "./dv": {
+      "default": "./build/esm/locale/dv.js",
+      "types": "./build/esm/locale/dv.d.ts",
+      "require": "./build/cjs/locale/dv.js"
+    },
+    "./dz": {
+      "default": "./build/esm/locale/dz.js",
+      "types": "./build/esm/locale/dz.d.ts",
+      "require": "./build/cjs/locale/dz.js"
+    },
+    "./ee": {
+      "default": "./build/esm/locale/ee.js",
+      "types": "./build/esm/locale/ee.d.ts",
+      "require": "./build/cjs/locale/ee.js"
+    },
+    "./el": {
+      "default": "./build/esm/locale/el.js",
+      "types": "./build/esm/locale/el.d.ts",
+      "require": "./build/cjs/locale/el.js"
+    },
+    "./en": {
+      "default": "./build/esm/locale/en.js",
+      "types": "./build/esm/locale/en.d.ts",
+      "require": "./build/cjs/locale/en.js"
+    },
+    "./eo": {
+      "default": "./build/esm/locale/eo.js",
+      "types": "./build/esm/locale/eo.d.ts",
+      "require": "./build/cjs/locale/eo.js"
+    },
+    "./es": {
+      "default": "./build/esm/locale/es.js",
+      "types": "./build/esm/locale/es.d.ts",
+      "require": "./build/cjs/locale/es.js"
+    },
+    "./et": {
+      "default": "./build/esm/locale/et.js",
+      "types": "./build/esm/locale/et.d.ts",
+      "require": "./build/cjs/locale/et.js"
+    },
+    "./eu": {
+      "default": "./build/esm/locale/eu.js",
+      "types": "./build/esm/locale/eu.d.ts",
+      "require": "./build/cjs/locale/eu.js"
+    },
+    "./fa": {
+      "default": "./build/esm/locale/fa.js",
+      "types": "./build/esm/locale/fa.d.ts",
+      "require": "./build/cjs/locale/fa.js"
+    },
+    "./ff": {
+      "default": "./build/esm/locale/ff.js",
+      "types": "./build/esm/locale/ff.d.ts",
+      "require": "./build/cjs/locale/ff.js"
+    },
+    "./fi": {
+      "default": "./build/esm/locale/fi.js",
+      "types": "./build/esm/locale/fi.d.ts",
+      "require": "./build/cjs/locale/fi.js"
+    },
+    "./fil": {
+      "default": "./build/esm/locale/fil.js",
+      "types": "./build/esm/locale/fil.d.ts",
+      "require": "./build/cjs/locale/fil.js"
+    },
+    "./fo": {
+      "default": "./build/esm/locale/fo.js",
+      "types": "./build/esm/locale/fo.d.ts",
+      "require": "./build/cjs/locale/fo.js"
+    },
+    "./fr": {
+      "default": "./build/esm/locale/fr.js",
+      "types": "./build/esm/locale/fr.d.ts",
+      "require": "./build/cjs/locale/fr.js"
+    },
+    "./fur": {
+      "default": "./build/esm/locale/fur.js",
+      "types": "./build/esm/locale/fur.d.ts",
+      "require": "./build/cjs/locale/fur.js"
+    },
+    "./fy": {
+      "default": "./build/esm/locale/fy.js",
+      "types": "./build/esm/locale/fy.d.ts",
+      "require": "./build/cjs/locale/fy.js"
+    },
+    "./ga": {
+      "default": "./build/esm/locale/ga.js",
+      "types": "./build/esm/locale/ga.d.ts",
+      "require": "./build/cjs/locale/ga.js"
+    },
+    "./gd": {
+      "default": "./build/esm/locale/gd.js",
+      "types": "./build/esm/locale/gd.d.ts",
+      "require": "./build/cjs/locale/gd.js"
+    },
+    "./gl": {
+      "default": "./build/esm/locale/gl.js",
+      "types": "./build/esm/locale/gl.d.ts",
+      "require": "./build/cjs/locale/gl.js"
+    },
+    "./gsw": {
+      "default": "./build/esm/locale/gsw.js",
+      "types": "./build/esm/locale/gsw.d.ts",
+      "require": "./build/cjs/locale/gsw.js"
+    },
+    "./gu": {
+      "default": "./build/esm/locale/gu.js",
+      "types": "./build/esm/locale/gu.d.ts",
+      "require": "./build/cjs/locale/gu.js"
+    },
+    "./guw": {
+      "default": "./build/esm/locale/guw.js",
+      "types": "./build/esm/locale/guw.d.ts",
+      "require": "./build/cjs/locale/guw.js"
+    },
+    "./gv": {
+      "default": "./build/esm/locale/gv.js",
+      "types": "./build/esm/locale/gv.d.ts",
+      "require": "./build/cjs/locale/gv.js"
+    },
+    "./ha": {
+      "default": "./build/esm/locale/ha.js",
+      "types": "./build/esm/locale/ha.d.ts",
+      "require": "./build/cjs/locale/ha.js"
+    },
+    "./haw": {
+      "default": "./build/esm/locale/haw.js",
+      "types": "./build/esm/locale/haw.d.ts",
+      "require": "./build/cjs/locale/haw.js"
+    },
+    "./he": {
+      "default": "./build/esm/locale/he.js",
+      "types": "./build/esm/locale/he.d.ts",
+      "require": "./build/cjs/locale/he.js"
+    },
+    "./hi": {
+      "default": "./build/esm/locale/hi.js",
+      "types": "./build/esm/locale/hi.d.ts",
+      "require": "./build/cjs/locale/hi.js"
+    },
+    "./hr": {
+      "default": "./build/esm/locale/hr.js",
+      "types": "./build/esm/locale/hr.d.ts",
+      "require": "./build/cjs/locale/hr.js"
+    },
+    "./hsb": {
+      "default": "./build/esm/locale/hsb.js",
+      "types": "./build/esm/locale/hsb.d.ts",
+      "require": "./build/cjs/locale/hsb.js"
+    },
+    "./hu": {
+      "default": "./build/esm/locale/hu.js",
+      "types": "./build/esm/locale/hu.d.ts",
+      "require": "./build/cjs/locale/hu.js"
+    },
+    "./hy": {
+      "default": "./build/esm/locale/hy.js",
+      "types": "./build/esm/locale/hy.d.ts",
+      "require": "./build/cjs/locale/hy.js"
+    },
+    "./ia": {
+      "default": "./build/esm/locale/ia.js",
+      "types": "./build/esm/locale/ia.d.ts",
+      "require": "./build/cjs/locale/ia.js"
+    },
+    "./id": {
+      "default": "./build/esm/locale/id.js",
+      "types": "./build/esm/locale/id.d.ts",
+      "require": "./build/cjs/locale/id.js"
+    },
+    "./ig": {
+      "default": "./build/esm/locale/ig.js",
+      "types": "./build/esm/locale/ig.d.ts",
+      "require": "./build/cjs/locale/ig.js"
+    },
+    "./ii": {
+      "default": "./build/esm/locale/ii.js",
+      "types": "./build/esm/locale/ii.d.ts",
+      "require": "./build/cjs/locale/ii.js"
+    },
+    "./in": {
+      "default": "./build/esm/locale/in.js",
+      "types": "./build/esm/locale/in.d.ts",
+      "require": "./build/cjs/locale/in.js"
+    },
+    "./io": {
+      "default": "./build/esm/locale/io.js",
+      "types": "./build/esm/locale/io.d.ts",
+      "require": "./build/cjs/locale/io.js"
+    },
+    "./is": {
+      "default": "./build/esm/locale/is.js",
+      "types": "./build/esm/locale/is.d.ts",
+      "require": "./build/cjs/locale/is.js"
+    },
+    "./it": {
+      "default": "./build/esm/locale/it.js",
+      "types": "./build/esm/locale/it.d.ts",
+      "require": "./build/cjs/locale/it.js"
+    },
+    "./iu": {
+      "default": "./build/esm/locale/iu.js",
+      "types": "./build/esm/locale/iu.d.ts",
+      "require": "./build/cjs/locale/iu.js"
+    },
+    "./iw": {
+      "default": "./build/esm/locale/iw.js",
+      "types": "./build/esm/locale/iw.d.ts",
+      "require": "./build/cjs/locale/iw.js"
+    },
+    "./ja": {
+      "default": "./build/esm/locale/ja.js",
+      "types": "./build/esm/locale/ja.d.ts",
+      "require": "./build/cjs/locale/ja.js"
+    },
+    "./jbo": {
+      "default": "./build/esm/locale/jbo.js",
+      "types": "./build/esm/locale/jbo.d.ts",
+      "require": "./build/cjs/locale/jbo.js"
+    },
+    "./jgo": {
+      "default": "./build/esm/locale/jgo.js",
+      "types": "./build/esm/locale/jgo.d.ts",
+      "require": "./build/cjs/locale/jgo.js"
+    },
+    "./ji": {
+      "default": "./build/esm/locale/ji.js",
+      "types": "./build/esm/locale/ji.d.ts",
+      "require": "./build/cjs/locale/ji.js"
+    },
+    "./jmc": {
+      "default": "./build/esm/locale/jmc.js",
+      "types": "./build/esm/locale/jmc.d.ts",
+      "require": "./build/cjs/locale/jmc.js"
+    },
+    "./jv": {
+      "default": "./build/esm/locale/jv.js",
+      "types": "./build/esm/locale/jv.d.ts",
+      "require": "./build/cjs/locale/jv.js"
+    },
+    "./jw": {
+      "default": "./build/esm/locale/jw.js",
+      "types": "./build/esm/locale/jw.d.ts",
+      "require": "./build/cjs/locale/jw.js"
+    },
+    "./ka": {
+      "default": "./build/esm/locale/ka.js",
+      "types": "./build/esm/locale/ka.d.ts",
+      "require": "./build/cjs/locale/ka.js"
+    },
+    "./kab": {
+      "default": "./build/esm/locale/kab.js",
+      "types": "./build/esm/locale/kab.d.ts",
+      "require": "./build/cjs/locale/kab.js"
+    },
+    "./kaj": {
+      "default": "./build/esm/locale/kaj.js",
+      "types": "./build/esm/locale/kaj.d.ts",
+      "require": "./build/cjs/locale/kaj.js"
+    },
+    "./kcg": {
+      "default": "./build/esm/locale/kcg.js",
+      "types": "./build/esm/locale/kcg.d.ts",
+      "require": "./build/cjs/locale/kcg.js"
+    },
+    "./kde": {
+      "default": "./build/esm/locale/kde.js",
+      "types": "./build/esm/locale/kde.d.ts",
+      "require": "./build/cjs/locale/kde.js"
+    },
+    "./kea": {
+      "default": "./build/esm/locale/kea.js",
+      "types": "./build/esm/locale/kea.d.ts",
+      "require": "./build/cjs/locale/kea.js"
+    },
+    "./kk": {
+      "default": "./build/esm/locale/kk.js",
+      "types": "./build/esm/locale/kk.d.ts",
+      "require": "./build/cjs/locale/kk.js"
+    },
+    "./kkj": {
+      "default": "./build/esm/locale/kkj.js",
+      "types": "./build/esm/locale/kkj.d.ts",
+      "require": "./build/cjs/locale/kkj.js"
+    },
+    "./kl": {
+      "default": "./build/esm/locale/kl.js",
+      "types": "./build/esm/locale/kl.d.ts",
+      "require": "./build/cjs/locale/kl.js"
+    },
+    "./km": {
+      "default": "./build/esm/locale/km.js",
+      "types": "./build/esm/locale/km.d.ts",
+      "require": "./build/cjs/locale/km.js"
+    },
+    "./kn": {
+      "default": "./build/esm/locale/kn.js",
+      "types": "./build/esm/locale/kn.d.ts",
+      "require": "./build/cjs/locale/kn.js"
+    },
+    "./ko": {
+      "default": "./build/esm/locale/ko.js",
+      "types": "./build/esm/locale/ko.d.ts",
+      "require": "./build/cjs/locale/ko.js"
+    },
+    "./ks": {
+      "default": "./build/esm/locale/ks.js",
+      "types": "./build/esm/locale/ks.d.ts",
+      "require": "./build/cjs/locale/ks.js"
+    },
+    "./ksb": {
+      "default": "./build/esm/locale/ksb.js",
+      "types": "./build/esm/locale/ksb.d.ts",
+      "require": "./build/cjs/locale/ksb.js"
+    },
+    "./ksh": {
+      "default": "./build/esm/locale/ksh.js",
+      "types": "./build/esm/locale/ksh.d.ts",
+      "require": "./build/cjs/locale/ksh.js"
+    },
+    "./ku": {
+      "default": "./build/esm/locale/ku.js",
+      "types": "./build/esm/locale/ku.d.ts",
+      "require": "./build/cjs/locale/ku.js"
+    },
+    "./kw": {
+      "default": "./build/esm/locale/kw.js",
+      "types": "./build/esm/locale/kw.d.ts",
+      "require": "./build/cjs/locale/kw.js"
+    },
+    "./ky": {
+      "default": "./build/esm/locale/ky.js",
+      "types": "./build/esm/locale/ky.d.ts",
+      "require": "./build/cjs/locale/ky.js"
+    },
+    "./lag": {
+      "default": "./build/esm/locale/lag.js",
+      "types": "./build/esm/locale/lag.d.ts",
+      "require": "./build/cjs/locale/lag.js"
+    },
+    "./lb": {
+      "default": "./build/esm/locale/lb.js",
+      "types": "./build/esm/locale/lb.d.ts",
+      "require": "./build/cjs/locale/lb.js"
+    },
+    "./lg": {
+      "default": "./build/esm/locale/lg.js",
+      "types": "./build/esm/locale/lg.d.ts",
+      "require": "./build/cjs/locale/lg.js"
+    },
+    "./lkt": {
+      "default": "./build/esm/locale/lkt.js",
+      "types": "./build/esm/locale/lkt.d.ts",
+      "require": "./build/cjs/locale/lkt.js"
+    },
+    "./ln": {
+      "default": "./build/esm/locale/ln.js",
+      "types": "./build/esm/locale/ln.d.ts",
+      "require": "./build/cjs/locale/ln.js"
+    },
+    "./lo": {
+      "default": "./build/esm/locale/lo.js",
+      "types": "./build/esm/locale/lo.d.ts",
+      "require": "./build/cjs/locale/lo.js"
+    },
+    "./lt": {
+      "default": "./build/esm/locale/lt.js",
+      "types": "./build/esm/locale/lt.d.ts",
+      "require": "./build/cjs/locale/lt.js"
+    },
+    "./lv": {
+      "default": "./build/esm/locale/lv.js",
+      "types": "./build/esm/locale/lv.d.ts",
+      "require": "./build/cjs/locale/lv.js"
+    },
+    "./mas": {
+      "default": "./build/esm/locale/mas.js",
+      "types": "./build/esm/locale/mas.d.ts",
+      "require": "./build/cjs/locale/mas.js"
+    },
+    "./mg": {
+      "default": "./build/esm/locale/mg.js",
+      "types": "./build/esm/locale/mg.d.ts",
+      "require": "./build/cjs/locale/mg.js"
+    },
+    "./mgo": {
+      "default": "./build/esm/locale/mgo.js",
+      "types": "./build/esm/locale/mgo.d.ts",
+      "require": "./build/cjs/locale/mgo.js"
+    },
+    "./mk": {
+      "default": "./build/esm/locale/mk.js",
+      "types": "./build/esm/locale/mk.d.ts",
+      "require": "./build/cjs/locale/mk.js"
+    },
+    "./ml": {
+      "default": "./build/esm/locale/ml.js",
+      "types": "./build/esm/locale/ml.d.ts",
+      "require": "./build/cjs/locale/ml.js"
+    },
+    "./mn": {
+      "default": "./build/esm/locale/mn.js",
+      "types": "./build/esm/locale/mn.d.ts",
+      "require": "./build/cjs/locale/mn.js"
+    },
+    "./mo": {
+      "default": "./build/esm/locale/mo.js",
+      "types": "./build/esm/locale/mo.d.ts",
+      "require": "./build/cjs/locale/mo.js"
+    },
+    "./mr": {
+      "default": "./build/esm/locale/mr.js",
+      "types": "./build/esm/locale/mr.d.ts",
+      "require": "./build/cjs/locale/mr.js"
+    },
+    "./ms": {
+      "default": "./build/esm/locale/ms.js",
+      "types": "./build/esm/locale/ms.d.ts",
+      "require": "./build/cjs/locale/ms.js"
+    },
+    "./mt": {
+      "default": "./build/esm/locale/mt.js",
+      "types": "./build/esm/locale/mt.d.ts",
+      "require": "./build/cjs/locale/mt.js"
+    },
+    "./my": {
+      "default": "./build/esm/locale/my.js",
+      "types": "./build/esm/locale/my.d.ts",
+      "require": "./build/cjs/locale/my.js"
+    },
+    "./nah": {
+      "default": "./build/esm/locale/nah.js",
+      "types": "./build/esm/locale/nah.d.ts",
+      "require": "./build/cjs/locale/nah.js"
+    },
+    "./naq": {
+      "default": "./build/esm/locale/naq.js",
+      "types": "./build/esm/locale/naq.d.ts",
+      "require": "./build/cjs/locale/naq.js"
+    },
+    "./nb": {
+      "default": "./build/esm/locale/nb.js",
+      "types": "./build/esm/locale/nb.d.ts",
+      "require": "./build/cjs/locale/nb.js"
+    },
+    "./nd": {
+      "default": "./build/esm/locale/nd.js",
+      "types": "./build/esm/locale/nd.d.ts",
+      "require": "./build/cjs/locale/nd.js"
+    },
+    "./ne": {
+      "default": "./build/esm/locale/ne.js",
+      "types": "./build/esm/locale/ne.d.ts",
+      "require": "./build/cjs/locale/ne.js"
+    },
+    "./nl": {
+      "default": "./build/esm/locale/nl.js",
+      "types": "./build/esm/locale/nl.d.ts",
+      "require": "./build/cjs/locale/nl.js"
+    },
+    "./nn": {
+      "default": "./build/esm/locale/nn.js",
+      "types": "./build/esm/locale/nn.d.ts",
+      "require": "./build/cjs/locale/nn.js"
+    },
+    "./nnh": {
+      "default": "./build/esm/locale/nnh.js",
+      "types": "./build/esm/locale/nnh.d.ts",
+      "require": "./build/cjs/locale/nnh.js"
+    },
+    "./no": {
+      "default": "./build/esm/locale/no.js",
+      "types": "./build/esm/locale/no.d.ts",
+      "require": "./build/cjs/locale/no.js"
+    },
+    "./nqo": {
+      "default": "./build/esm/locale/nqo.js",
+      "types": "./build/esm/locale/nqo.d.ts",
+      "require": "./build/cjs/locale/nqo.js"
+    },
+    "./nr": {
+      "default": "./build/esm/locale/nr.js",
+      "types": "./build/esm/locale/nr.d.ts",
+      "require": "./build/cjs/locale/nr.js"
+    },
+    "./nso": {
+      "default": "./build/esm/locale/nso.js",
+      "types": "./build/esm/locale/nso.d.ts",
+      "require": "./build/cjs/locale/nso.js"
+    },
+    "./ny": {
+      "default": "./build/esm/locale/ny.js",
+      "types": "./build/esm/locale/ny.d.ts",
+      "require": "./build/cjs/locale/ny.js"
+    },
+    "./nyn": {
+      "default": "./build/esm/locale/nyn.js",
+      "types": "./build/esm/locale/nyn.d.ts",
+      "require": "./build/cjs/locale/nyn.js"
+    },
+    "./om": {
+      "default": "./build/esm/locale/om.js",
+      "types": "./build/esm/locale/om.d.ts",
+      "require": "./build/cjs/locale/om.js"
+    },
+    "./or": {
+      "default": "./build/esm/locale/or.js",
+      "types": "./build/esm/locale/or.d.ts",
+      "require": "./build/cjs/locale/or.js"
+    },
+    "./os": {
+      "default": "./build/esm/locale/os.js",
+      "types": "./build/esm/locale/os.d.ts",
+      "require": "./build/cjs/locale/os.js"
+    },
+    "./osa": {
+      "default": "./build/esm/locale/osa.js",
+      "types": "./build/esm/locale/osa.d.ts",
+      "require": "./build/cjs/locale/osa.js"
+    },
+    "./pa": {
+      "default": "./build/esm/locale/pa.js",
+      "types": "./build/esm/locale/pa.d.ts",
+      "require": "./build/cjs/locale/pa.js"
+    },
+    "./pap": {
+      "default": "./build/esm/locale/pap.js",
+      "types": "./build/esm/locale/pap.d.ts",
+      "require": "./build/cjs/locale/pap.js"
+    },
+    "./pl": {
+      "default": "./build/esm/locale/pl.js",
+      "types": "./build/esm/locale/pl.d.ts",
+      "require": "./build/cjs/locale/pl.js"
+    },
+    "./prg": {
+      "default": "./build/esm/locale/prg.js",
+      "types": "./build/esm/locale/prg.d.ts",
+      "require": "./build/cjs/locale/prg.js"
+    },
+    "./ps": {
+      "default": "./build/esm/locale/ps.js",
+      "types": "./build/esm/locale/ps.d.ts",
+      "require": "./build/cjs/locale/ps.js"
+    },
+    "./pt": {
+      "default": "./build/esm/locale/pt.js",
+      "types": "./build/esm/locale/pt.d.ts",
+      "require": "./build/cjs/locale/pt.js"
+    },
+    "./ptPT": {
+      "default": "./build/esm/locale/pt-PT.js",
+      "types": "./build/esm/locale/pt-PT.d.ts",
+      "require": "./build/cjs/locale/pt-PT.js"
+    },
+    "./rm": {
+      "default": "./build/esm/locale/rm.js",
+      "types": "./build/esm/locale/rm.d.ts",
+      "require": "./build/cjs/locale/rm.js"
+    },
+    "./ro": {
+      "default": "./build/esm/locale/ro.js",
+      "types": "./build/esm/locale/ro.d.ts",
+      "require": "./build/cjs/locale/ro.js"
+    },
+    "./rof": {
+      "default": "./build/esm/locale/rof.js",
+      "types": "./build/esm/locale/rof.d.ts",
+      "require": "./build/cjs/locale/rof.js"
+    },
+    "./root": {
+      "default": "./build/esm/locale/root.js",
+      "types": "./build/esm/locale/root.d.ts",
+      "require": "./build/cjs/locale/root.js"
+    },
+    "./ru": {
+      "default": "./build/esm/locale/ru.js",
+      "types": "./build/esm/locale/ru.d.ts",
+      "require": "./build/cjs/locale/ru.js"
+    },
+    "./rwk": {
+      "default": "./build/esm/locale/rwk.js",
+      "types": "./build/esm/locale/rwk.d.ts",
+      "require": "./build/cjs/locale/rwk.js"
+    },
+    "./sah": {
+      "default": "./build/esm/locale/sah.js",
+      "types": "./build/esm/locale/sah.d.ts",
+      "require": "./build/cjs/locale/sah.js"
+    },
+    "./saq": {
+      "default": "./build/esm/locale/saq.js",
+      "types": "./build/esm/locale/saq.d.ts",
+      "require": "./build/cjs/locale/saq.js"
+    },
+    "./sc": {
+      "default": "./build/esm/locale/sc.js",
+      "types": "./build/esm/locale/sc.d.ts",
+      "require": "./build/cjs/locale/sc.js"
+    },
+    "./scn": {
+      "default": "./build/esm/locale/scn.js",
+      "types": "./build/esm/locale/scn.d.ts",
+      "require": "./build/cjs/locale/scn.js"
+    },
+    "./sd": {
+      "default": "./build/esm/locale/sd.js",
+      "types": "./build/esm/locale/sd.d.ts",
+      "require": "./build/cjs/locale/sd.js"
+    },
+    "./sdh": {
+      "default": "./build/esm/locale/sdh.js",
+      "types": "./build/esm/locale/sdh.d.ts",
+      "require": "./build/cjs/locale/sdh.js"
+    },
+    "./se": {
+      "default": "./build/esm/locale/se.js",
+      "types": "./build/esm/locale/se.d.ts",
+      "require": "./build/cjs/locale/se.js"
+    },
+    "./seh": {
+      "default": "./build/esm/locale/seh.js",
+      "types": "./build/esm/locale/seh.d.ts",
+      "require": "./build/cjs/locale/seh.js"
+    },
+    "./ses": {
+      "default": "./build/esm/locale/ses.js",
+      "types": "./build/esm/locale/ses.d.ts",
+      "require": "./build/cjs/locale/ses.js"
+    },
+    "./sg": {
+      "default": "./build/esm/locale/sg.js",
+      "types": "./build/esm/locale/sg.d.ts",
+      "require": "./build/cjs/locale/sg.js"
+    },
+    "./sh": {
+      "default": "./build/esm/locale/sh.js",
+      "types": "./build/esm/locale/sh.d.ts",
+      "require": "./build/cjs/locale/sh.js"
+    },
+    "./shi": {
+      "default": "./build/esm/locale/shi.js",
+      "types": "./build/esm/locale/shi.d.ts",
+      "require": "./build/cjs/locale/shi.js"
+    },
+    "./si": {
+      "default": "./build/esm/locale/si.js",
+      "types": "./build/esm/locale/si.d.ts",
+      "require": "./build/cjs/locale/si.js"
+    },
+    "./sk": {
+      "default": "./build/esm/locale/sk.js",
+      "types": "./build/esm/locale/sk.d.ts",
+      "require": "./build/cjs/locale/sk.js"
+    },
+    "./sl": {
+      "default": "./build/esm/locale/sl.js",
+      "types": "./build/esm/locale/sl.d.ts",
+      "require": "./build/cjs/locale/sl.js"
+    },
+    "./sma": {
+      "default": "./build/esm/locale/sma.js",
+      "types": "./build/esm/locale/sma.d.ts",
+      "require": "./build/cjs/locale/sma.js"
+    },
+    "./smi": {
+      "default": "./build/esm/locale/smi.js",
+      "types": "./build/esm/locale/smi.d.ts",
+      "require": "./build/cjs/locale/smi.js"
+    },
+    "./smj": {
+      "default": "./build/esm/locale/smj.js",
+      "types": "./build/esm/locale/smj.d.ts",
+      "require": "./build/cjs/locale/smj.js"
+    },
+    "./smn": {
+      "default": "./build/esm/locale/smn.js",
+      "types": "./build/esm/locale/smn.d.ts",
+      "require": "./build/cjs/locale/smn.js"
+    },
+    "./sms": {
+      "default": "./build/esm/locale/sms.js",
+      "types": "./build/esm/locale/sms.d.ts",
+      "require": "./build/cjs/locale/sms.js"
+    },
+    "./sn": {
+      "default": "./build/esm/locale/sn.js",
+      "types": "./build/esm/locale/sn.d.ts",
+      "require": "./build/cjs/locale/sn.js"
+    },
+    "./so": {
+      "default": "./build/esm/locale/so.js",
+      "types": "./build/esm/locale/so.d.ts",
+      "require": "./build/cjs/locale/so.js"
+    },
+    "./sq": {
+      "default": "./build/esm/locale/sq.js",
+      "types": "./build/esm/locale/sq.d.ts",
+      "require": "./build/cjs/locale/sq.js"
+    },
+    "./sr": {
+      "default": "./build/esm/locale/sr.js",
+      "types": "./build/esm/locale/sr.d.ts",
+      "require": "./build/cjs/locale/sr.js"
+    },
+    "./ss": {
+      "default": "./build/esm/locale/ss.js",
+      "types": "./build/esm/locale/ss.d.ts",
+      "require": "./build/cjs/locale/ss.js"
+    },
+    "./ssy": {
+      "default": "./build/esm/locale/ssy.js",
+      "types": "./build/esm/locale/ssy.d.ts",
+      "require": "./build/cjs/locale/ssy.js"
+    },
+    "./st": {
+      "default": "./build/esm/locale/st.js",
+      "types": "./build/esm/locale/st.d.ts",
+      "require": "./build/cjs/locale/st.js"
+    },
+    "./su": {
+      "default": "./build/esm/locale/su.js",
+      "types": "./build/esm/locale/su.d.ts",
+      "require": "./build/cjs/locale/su.js"
+    },
+    "./sv": {
+      "default": "./build/esm/locale/sv.js",
+      "types": "./build/esm/locale/sv.d.ts",
+      "require": "./build/cjs/locale/sv.js"
+    },
+    "./sw": {
+      "default": "./build/esm/locale/sw.js",
+      "types": "./build/esm/locale/sw.d.ts",
+      "require": "./build/cjs/locale/sw.js"
+    },
+    "./syr": {
+      "default": "./build/esm/locale/syr.js",
+      "types": "./build/esm/locale/syr.d.ts",
+      "require": "./build/cjs/locale/syr.js"
+    },
+    "./ta": {
+      "default": "./build/esm/locale/ta.js",
+      "types": "./build/esm/locale/ta.d.ts",
+      "require": "./build/cjs/locale/ta.js"
+    },
+    "./te": {
+      "default": "./build/esm/locale/te.js",
+      "types": "./build/esm/locale/te.d.ts",
+      "require": "./build/cjs/locale/te.js"
+    },
+    "./teo": {
+      "default": "./build/esm/locale/teo.js",
+      "types": "./build/esm/locale/teo.d.ts",
+      "require": "./build/cjs/locale/teo.js"
+    },
+    "./th": {
+      "default": "./build/esm/locale/th.js",
+      "types": "./build/esm/locale/th.d.ts",
+      "require": "./build/cjs/locale/th.js"
+    },
+    "./ti": {
+      "default": "./build/esm/locale/ti.js",
+      "types": "./build/esm/locale/ti.d.ts",
+      "require": "./build/cjs/locale/ti.js"
+    },
+    "./tig": {
+      "default": "./build/esm/locale/tig.js",
+      "types": "./build/esm/locale/tig.d.ts",
+      "require": "./build/cjs/locale/tig.js"
+    },
+    "./tk": {
+      "default": "./build/esm/locale/tk.js",
+      "types": "./build/esm/locale/tk.d.ts",
+      "require": "./build/cjs/locale/tk.js"
+    },
+    "./tl": {
+      "default": "./build/esm/locale/tl.js",
+      "types": "./build/esm/locale/tl.d.ts",
+      "require": "./build/cjs/locale/tl.js"
+    },
+    "./tn": {
+      "default": "./build/esm/locale/tn.js",
+      "types": "./build/esm/locale/tn.d.ts",
+      "require": "./build/cjs/locale/tn.js"
+    },
+    "./to": {
+      "default": "./build/esm/locale/to.js",
+      "types": "./build/esm/locale/to.d.ts",
+      "require": "./build/cjs/locale/to.js"
+    },
+    "./tr": {
+      "default": "./build/esm/locale/tr.js",
+      "types": "./build/esm/locale/tr.d.ts",
+      "require": "./build/cjs/locale/tr.js"
+    },
+    "./ts": {
+      "default": "./build/esm/locale/ts.js",
+      "types": "./build/esm/locale/ts.d.ts",
+      "require": "./build/cjs/locale/ts.js"
+    },
+    "./tzm": {
+      "default": "./build/esm/locale/tzm.js",
+      "types": "./build/esm/locale/tzm.d.ts",
+      "require": "./build/cjs/locale/tzm.js"
+    },
+    "./ug": {
+      "default": "./build/esm/locale/ug.js",
+      "types": "./build/esm/locale/ug.d.ts",
+      "require": "./build/cjs/locale/ug.js"
+    },
+    "./uk": {
+      "default": "./build/esm/locale/uk.js",
+      "types": "./build/esm/locale/uk.d.ts",
+      "require": "./build/cjs/locale/uk.js"
+    },
+    "./ur": {
+      "default": "./build/esm/locale/ur.js",
+      "types": "./build/esm/locale/ur.d.ts",
+      "require": "./build/cjs/locale/ur.js"
+    },
+    "./uz": {
+      "default": "./build/esm/locale/uz.js",
+      "types": "./build/esm/locale/uz.d.ts",
+      "require": "./build/cjs/locale/uz.js"
+    },
+    "./ve": {
+      "default": "./build/esm/locale/ve.js",
+      "types": "./build/esm/locale/ve.d.ts",
+      "require": "./build/cjs/locale/ve.js"
+    },
+    "./vi": {
+      "default": "./build/esm/locale/vi.js",
+      "types": "./build/esm/locale/vi.d.ts",
+      "require": "./build/cjs/locale/vi.js"
+    },
+    "./vo": {
+      "default": "./build/esm/locale/vo.js",
+      "types": "./build/esm/locale/vo.d.ts",
+      "require": "./build/cjs/locale/vo.js"
+    },
+    "./vun": {
+      "default": "./build/esm/locale/vun.js",
+      "types": "./build/esm/locale/vun.d.ts",
+      "require": "./build/cjs/locale/vun.js"
+    },
+    "./wa": {
+      "default": "./build/esm/locale/wa.js",
+      "types": "./build/esm/locale/wa.d.ts",
+      "require": "./build/cjs/locale/wa.js"
+    },
+    "./wae": {
+      "default": "./build/esm/locale/wae.js",
+      "types": "./build/esm/locale/wae.d.ts",
+      "require": "./build/cjs/locale/wae.js"
+    },
+    "./wo": {
+      "default": "./build/esm/locale/wo.js",
+      "types": "./build/esm/locale/wo.d.ts",
+      "require": "./build/cjs/locale/wo.js"
+    },
+    "./xh": {
+      "default": "./build/esm/locale/xh.js",
+      "types": "./build/esm/locale/xh.d.ts",
+      "require": "./build/cjs/locale/xh.js"
+    },
+    "./xog": {
+      "default": "./build/esm/locale/xog.js",
+      "types": "./build/esm/locale/xog.d.ts",
+      "require": "./build/cjs/locale/xog.js"
+    },
+    "./yi": {
+      "default": "./build/esm/locale/yi.js",
+      "types": "./build/esm/locale/yi.d.ts",
+      "require": "./build/cjs/locale/yi.js"
+    },
+    "./yo": {
+      "default": "./build/esm/locale/yo.js",
+      "types": "./build/esm/locale/yo.d.ts",
+      "require": "./build/cjs/locale/yo.js"
+    },
+    "./yue": {
+      "default": "./build/esm/locale/yue.js",
+      "types": "./build/esm/locale/yue.d.ts",
+      "require": "./build/cjs/locale/yue.js"
+    },
+    "./zh": {
+      "default": "./build/esm/locale/zh.js",
+      "types": "./build/esm/locale/zh.d.ts",
+      "require": "./build/cjs/locale/zh.js"
+    },
+    "./zu": {
+      "default": "./build/esm/locale/zu.js",
+      "types": "./build/esm/locale/zu.d.ts",
+      "require": "./build/cjs/locale/zu.js"
+    }
   },
   "scripts": {
-    "build": "pnpm clean && pnpm generate && tsc -p tsconfig.build.json && ts-node ../../scripts/bundle.ts",
+    "build": "pnpm clean && pnpm generate && pnpm build:cjs && pnpm build:esm && ts-node ../../scripts/bundle.ts",
+    "build:cjs": "tsc -p tsconfig.build.cjs.json",
+    "build:esm": "tsc -p tsconfig.build.esm.json",
     "generate": "ts-node generate.ts",
     "clean": "rimraf build coverage index.ts",
     "lint": "eslint . --max-warnings 0",

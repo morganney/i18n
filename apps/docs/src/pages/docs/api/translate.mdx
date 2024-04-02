@@ -5,6 +5,73 @@ description: 'Translate API'
 breadcrumbs: ['API']
 ---
 
+import Code from '../../../components/Code.astro';
+import Highlight from '../../../components/Highlight.astro';
+import Link from '../../../components/Link.astro';
+import { getUrl } from '../../../utils/url';
+
 # Translate API
 
-_todo_
+## Package
+
+```
+@foo-i18n/t
+```
+
+The `translate` function is responsible of returning the correct
+string from a specified messages dictionary, supporting `gender`
+and `plurality`.
+
+## Declarations
+
+<Code>
+
+```ts
+type Messages = {
+  [key: string]: PluralMessage | GenderedMessage | string;
+};
+
+type NamespaceMessages = {
+  [key: string]: Messages;
+};
+
+function translate(
+  msg: NamespaceMessages
+): (ns: string) => (text: string, values?: unknown) => string;
+```
+
+</Code>
+
+<Highlight variant="info">
+  The function args `ns`, `text`, and `values` are inferred from `msg`. The
+  signatures above have been simplified.
+</Highlight>
+
+## Usage
+
+<Code>
+
+```tsx
+import { translate, type NamespaceMessages } from '@foo-i18n/t';
+
+// NamespaceMessages-compliant dictionary
+const messages = {
+  hello: {
+    'Hello {name}': 'Hello {name}',
+  },
+} satisfies NamespaceMessages;
+
+// retrieve the translator for messages
+const translator = translate(messages);
+
+// retrieve the translate function for
+// namespace 'hello' (auto-completed)
+const t = translator('hello');
+
+// translate 'Hello {name}' (auto-completed, and
+// placeholder 'name' is mandatory)
+console.log(t('Hello {name}', { name: 'John' }));
+// "Hello John"
+```
+
+</Code>

@@ -1,6 +1,7 @@
-import { genders } from '@foo-i18n/base';
+import { genders, type NamespaceMessages } from '@foo-i18n/base';
 import { translate } from '@foo-i18n/t';
 import { loadMessages } from './i18n/messages.js';
+// TODO fix this, only import en, fr from plurals
 import plurals from '@foo-i18n/plurals';
 import { formatExt } from './i18n/format-ext.js';
 import type { AppLocale } from './i18n/types.js';
@@ -41,3 +42,18 @@ const bootstrap = async () => {
 };
 
 bootstrap();
+
+// simple straightforward inline translation
+const messages = {
+  hello: {
+    'Hello {name}': 'Hello {name}',
+  },
+} satisfies NamespaceMessages;
+
+const translator = translate(messages);
+
+// namespace 'hello' is auto-completed
+const t = translator('hello');
+
+const text = t('Hello {name}', { name: 'John' });
+console.log(text);

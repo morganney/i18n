@@ -43,15 +43,18 @@ const copyProps = new Set([
   'version',
 ]);
 
-
-const bundlePackage = async (src: string, dest: string, packages: Map<string, string>) => {
+const bundlePackage = async (
+  src: string,
+  dest: string,
+  packages: Map<string, string>
+) => {
   const pkgSource = path.join(src, pkgFile);
   const pkgDest = path.join(dest, pkgFile);
 
   const source = await fs.readFile(pkgSource, 'utf8');
   const parsed = JSON.parse(source) as JSON;
 
-  const result:JSON = {
+  const result: JSON = {
     name: '',
     description: '',
   };
@@ -65,7 +68,16 @@ const bundlePackage = async (src: string, dest: string, packages: Map<string, st
   if (result.exports) {
     const _exports = result.exports as any;
     for (const [alias, path] of Object.entries(_exports)) {
-      _exports[alias] = (path as string).replace('/build', '');
+      if (typeof path === 'string') {
+        _exports[alias] = (path as string).replace('/build', '');
+      } else {
+        for (const type in path as object) {
+          _exports[alias][type] = ((path as any)[type] as string).replace(
+            '/build',
+            ''
+          );
+        }
+      }
     }
   }
   if (result.main) {

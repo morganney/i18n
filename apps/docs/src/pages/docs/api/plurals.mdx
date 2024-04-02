@@ -5,6 +5,51 @@ description: 'Plurals API'
 breadcrumbs: ['API']
 ---
 
+import Code from '../../../components/Code.astro';
+
 # Plurals API
 
-_todo_
+## Package
+
+```
+@foo-i18n/plurals
+```
+
+Because plural rules different across different locales,
+this module's purpose is to offer standardized plurality
+values with rules generated from [CLDR data](https://www.npmjs.com/package/cldr-data).
+
+## Declarations
+
+<Code>
+
+```ts
+type Plurality = 'zero' | 'one' | 'two' | 'few' | 'many' | 'other';
+
+type PluralRule = {
+  ordinal(n: number): Plurality;
+  cardinal(n: number): Plurality;
+};
+```
+
+</Code>
+
+## Usage
+
+<Code>
+
+```tsx
+import en from '@foo-i18n/plurals/en';
+
+// 1, 2, 3, ...
+console.log(en.cardinal(1));
+// "one";
+console.log(en.cardinal(0.3));
+// "other"
+
+// 1st, 2nd, 3rd, ...
+console.log(en.ordinal(4));
+// "other"
+```
+
+</Code>

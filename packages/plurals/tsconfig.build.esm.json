@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "outDir": "build/esm"
+  },
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts", "generate.ts"]
+}

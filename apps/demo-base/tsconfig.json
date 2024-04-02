@@ -1,7 +1,5 @@
 {
   "extends": "@foo-i18n/typescript-config/base.json",
-  "include": [
-    "src/**/*.ts",
-  ],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }

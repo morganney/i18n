@@ -113,6 +113,8 @@ async function createRuleFileContent(rule: RuleFunctionDef) {
     ].join('\n'),
     {
       parser: 'typescript',
+      useTabs: false,
+      tabWidth: 2,
     }
   );
 
